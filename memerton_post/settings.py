@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'memerton_post.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'memerton-post',
+        'NAME': 'memertonpost',
     }
 }
 
