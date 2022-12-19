@@ -19,7 +19,7 @@ def home(request):
     return render(request, 'home.html')
 
 def create(request):
-    return render(request, 'memes/create.html')
+    return render(request, 'memes/create.html', {'url': ""})
 
 
 def add_photo(request):
@@ -34,7 +34,7 @@ def add_photo(request):
             # photo.save()
         except:
             print('An error occured uploading file to S3')
-    return redirect('/')
+    return redirect('meme_create', { 'url':url })
 
 def signup(request):
   error_message = ''
