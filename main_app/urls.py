@@ -8,5 +8,4 @@ urlpatterns = [
     path('memes/add_photo/', views.add_photo, name='add_photo'),
     #sign_up
     path('accounts/signup/', views.signup, name='signup'),
-
 ]
