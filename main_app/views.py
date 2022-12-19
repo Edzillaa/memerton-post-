@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from .models import Meme, Comment
 
-# Create your views here.
+
+def home(request):
+    return render(request, 'home.html')
+
+def create(request):
+    return render(request, 'memes/create.html')
