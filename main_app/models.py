@@ -12,7 +12,7 @@ class Meme(models.Model):
     dislikes = models.IntegerField
 
     def __str__(self):
-        return f"Photo for user_id: {self.user_id} @{self.url} for meme: {self.name}"
+        return f"Photo for user_id: {self.meme_id} @{self.url} for meme: {self.name}"
     
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -22,7 +22,6 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['-date']
-
 
 #if we have time: Message model for live chat.
 
