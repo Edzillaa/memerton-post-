@@ -9,5 +9,4 @@ urlpatterns = [
     path('memes/add_meme', views.add_meme, name = 'add_meme'),
     #sign_up
     path('accounts/signup/', views.signup, name='signup')
-
 ]
