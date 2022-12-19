@@ -34,7 +34,11 @@ def add_photo(request):
             # photo.save()
         except:
             print('An error occured uploading file to S3')
-    return redirect('/')
+    return redirect('meme_create')
+
+def add_meme(request):
+    
+    return redirect('home')
 
 def signup(request):
   error_message = ''
