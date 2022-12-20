@@ -19,3 +19,12 @@
 #upload-meme{
     display: none;
 }
+#likes-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.vote-box{
+    width:50%
+}

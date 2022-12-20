@@ -21,6 +21,7 @@ BUCKET = 'eaga-catcollector'
 
 def home(request):
     memes = Meme.objects.all() #pulling all memes from our db
+
     return render(request, 'index.html', {'memes': memes})
 
 def create(request, photo=" "):
@@ -35,7 +36,7 @@ def create(request, photo=" "):
 def add_photo(request):
     photo_file = request.FILES.get('photo-file', None) #this saves uploaded photo name
     if photo_file:
-        s3 = boto3.client('s3')
+        s3 = boto3 .client('s3')
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
@@ -45,24 +46,32 @@ def add_photo(request):
 
 def add_meme(request, photo):
     key = photo
-
     raw_data= request.POST.get('photo-file')[request.POST.get('photo-file').find(',')+1:]
     b = base64.b64decode(raw_data)
-    print(b)
-    img = Image.open(io.BytesIO(b))
-    img.convert('RGB')
-    img.show()
- 
+    # print(b)
+    # img = Image.open(io.BytesIO(b))
+    # img.convert('RGB')
+    # img.show()
     s3 = boto3.client('s3')
-
     try:
         s3.upload_fileobj(io.BytesIO(b), BUCKET, key)
         url = f"{S3_BASE_URL}{BUCKET}/{key}"
         meme = Meme.objects.create(url=url, likes = 0, dislikes = 0, name=request.POST.get('meme-name'), user=request.user)
         meme.save()
-    
     except:
         print('An error occured uploading meme to S3')
+    return redirect('home')
+
+def add_like(request):
+    meme = Meme.objects.get(id=request.POST.get('meme-id'))
+    meme.likes += 1
+    meme.save()
+    return redirect('home')
+
+def add_dislike(request):
+    meme = Meme.objects.get(id=request.POST.get('meme-id'))
+    meme.dislikes += 1
+    meme.save()
     return redirect('home')
 
 def signup(request):
