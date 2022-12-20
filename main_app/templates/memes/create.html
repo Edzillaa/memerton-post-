@@ -7,7 +7,8 @@
         {% if url == " "%}
             <p> Please upload a photo</p>
         {% else %}
-            <div id="capture" style="background-image: url({{url}})">
+            <div id="capture">
+                <img class="capture" src="{{url}}" crossorigin="">
                 <div class="draggable">
                     <input type="text" placeholder="your text">
                 </div>

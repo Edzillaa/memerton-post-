@@ -14,10 +14,8 @@ import base64
 import io
 from PIL import Image
 
-
-
 S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
-BUCKET = 'eaga-catcollector'
+BUCKET = 'catcollector123456789'
 
 def home(request):
     memes = Meme.objects.all() #pulling all memes from our db
@@ -62,11 +60,13 @@ def add_meme(request, photo):
         print('An error occured uploading meme to S3')
     return redirect('home')
 
+
 def add_like(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))
     meme.likes += 1
     meme.save()
     return redirect('home')
+
 
 def add_dislike(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))
