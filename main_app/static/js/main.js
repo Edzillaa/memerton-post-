@@ -54,7 +54,7 @@ buttonAddText.addEventListener('click',(event)=>{
     memeImg.appendChild(newTextContainer)
 } )
 
-
+// need to clean up - textbox drag function is weird
 const position = { x: 0, y: 0 }
 
 interact('.draggable').draggable({
