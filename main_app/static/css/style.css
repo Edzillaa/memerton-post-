@@ -1,0 +1,21 @@
+#capture{
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-height: 60vh;
+    width: 100%;
+    margin-top: 10%;
+}
+
+.draggable{
+    background-color: rgba(255,255,255,0.5);
+    height: 50;
+    width: 100px;
+}
+
+.draggable:hover{
+    cursor: cell;
+}
+
+#upload-meme{
+    display: none;
+}
