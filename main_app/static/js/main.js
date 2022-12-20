@@ -10,15 +10,12 @@ let uploadMemeData = document.querySelector("#img-data")
 
 buttonDone.addEventListener('click', (event)=>{
     event.preventDefault()
-    html2canvas(document.querySelector("#capture"), { allowTaint: true, useCORS: true}).then(canvas => {
-        // var img = new Image();
-        // img.origin = 'anonymous';
+    html2canvas(document.querySelector(".capture"), { allowTaint: true, useCORS: true}).then(canvas => {
         let img= canvas.toDataURL("img/jpg");
         console.log(img)
-
-        let newImg = document.createElement("img")
-        newImg.src = img
-        imagePanel.appendChild(newImg)
+        // let newImg = document.createElement("img")
+        // newImg.src = img
+        // imagePanel.appendChild(newImg)
         //pass document 
 
 
