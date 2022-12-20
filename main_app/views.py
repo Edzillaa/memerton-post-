@@ -52,19 +52,17 @@ def add_meme(request, photo):
     img = Image.open(io.BytesIO(b))
     img.convert('RGB')
     img.show()
-    # photo_name = 'mymeme.png'
-    # img.save(photo_name)
-
+ 
     s3 = boto3.client('s3')
 
-    s3.upload_fileobj(io.BytesIO(b), BUCKET, key)
-    url = f"{S3_BASE_URL}{BUCKET}/{key}"
-
-
-    meme = Meme.objects.create(url=url, likes = 0, dislikes = 0, name=request.POST.get('meme-name'), user=request.user)
-    meme.save()
+    try:
+        s3.upload_fileobj(io.BytesIO(b), BUCKET, key)
+        url = f"{S3_BASE_URL}{BUCKET}/{key}"
+        meme = Meme.objects.create(url=url, likes = 0, dislikes = 0, name=request.POST.get('meme-name'), user=request.user)
+        meme.save()
     
-    # print('An error occured uploading meme to S3')
+    except:
+        print('An error occured uploading meme to S3')
     return redirect('home')
 
 def signup(request):
