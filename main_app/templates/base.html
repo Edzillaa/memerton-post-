@@ -6,10 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <!-- or -->
+    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</head>
+    
+  </head>
 <body>
     <header class="navbar-fixed">
         <nav>
@@ -20,7 +24,7 @@
             <ul class="right">
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'home'%}">my memes</a></li>
-                    <li><a href="{% url 'meme_create'%}">create</a></li>
+                    <li><a href="{% url 'meme_create' ' ' %}">create</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
@@ -36,5 +40,8 @@
         {% endblock %}
     </main>
 
+    <script type="text/javascript" src="{%static 'js/html2canvas.mini.js'%}"></script>
+    <script type="text/javascript" src="{%static 'js/main.js'%}"></script>
+    
 </body>
 </html>

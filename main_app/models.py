@@ -8,11 +8,11 @@ class Meme(models.Model):
     url = models.CharField(max_length = 200)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     #if we have time: create new model for likes and dislikes, restricting # of times user can like or dislike a meme.
-    likes = models.IntegerField
-    dislikes = models.IntegerField
+    likes = models.IntegerField()
+    dislikes = models.IntegerField()
 
     def __str__(self):
-        return f"Photo for user_id: {self.meme_id} @{self.url} for meme: {self.name}"
+        return f"Photo for user_id:{self.url} for meme: {self.name}"
     
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
