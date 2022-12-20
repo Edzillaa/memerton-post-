@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<tbody>
-    <div class="row">
-          {% for meme in memes%}
-          <div class="col s6 m3">
-            <div class="card blue-grey darken-1">
-              <div class="card-content white-text">
-                <span class="card-title">{{meme.name }} </span>
+
+<div class="row">
+  {% for meme in memes%}
+      <div class="col s4">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+                <span class="card-title">{{ meme.name }} </span>
                 <img src="{{meme.url}}">
                 <p>{{meme.url}}</p>
               </div>
@@ -19,7 +19,7 @@
           </div>
           {% endfor %}
         </div>
-      </tbody>
+
 
 
 {% endblock %}
