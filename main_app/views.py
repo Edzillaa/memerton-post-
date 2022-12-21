@@ -19,7 +19,6 @@ BUCKET = 'catcollector123456789'
 
 def home(request):
     memes = Meme.objects.all() #pulling all memes from our db
-
     return render(request, 'index.html', {'memes': memes})
 
 def create(request, photo=" "):
