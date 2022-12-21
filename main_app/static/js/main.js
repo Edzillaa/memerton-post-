@@ -6,7 +6,26 @@ let buttonAddText = document.querySelector("#add-text-btn")
 let uploadMemeForm = document.querySelector("#upload-meme")
 let uploadMemeData = document.querySelector("#img-data")
 
+// *********OVERLAY STUFF ************ 
+// let memeDetails = document.querySelectorAll(".meme-details")
+// let memes = document.querySelectorAll(".meme-card")
+// let memeCloseBtn = document.querySelectorAll(".detail-close-btn")
 
+// //show meme details overlay
+// memes.forEach(meme=>{
+//     meme.addEventListener('click', (event)=>{
+//         console.log(event.target.id)
+//         document.querySelector(`div[data-memeid="${event.target.id}"]`).style.display="flex"
+//     })
+// })
+// //close meme detail page
+// memeCloseBtn.forEach(btn=>{
+//     btn.addEventListener('click', (event)=>{
+//         memeDetails.forEach(meme=>{
+//             meme.style.display="none"
+//         })
+//     })
+// })
 
 buttonDone.addEventListener('click', (event)=>{
     event.preventDefault()
@@ -17,8 +36,6 @@ buttonDone.addEventListener('click', (event)=>{
         // newImg.src = img
         // imagePanel.appendChild(newImg)
         //pass document 
-
-
         //setting up the form for uploading!!
         uploadMemeForm.style.display="block"
         uploadMemeData.value = img

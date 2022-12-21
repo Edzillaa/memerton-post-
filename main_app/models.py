@@ -14,6 +14,9 @@ class Meme(models.Model):
 
     def __str__(self):
         return f"Photo for user_id:{self.url} for meme: {self.name}"
+
+    class Meta:
+        ordering = ['-dislikes']
     
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
