@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import uuid
 import boto3
-from .models import Meme, Comment
+from .models import Meme, Comment, User
 # Add the two imports below
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -10,6 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 # Import the mixin for class-based views
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import datetime as date
 import base64
 import io
 from PIL import Image
@@ -29,6 +30,19 @@ def create(request, photo=" "):
         url = " "
     #passing photo_name to create_page. this will be important when we want to save meme.
     return render(request, 'memes/create.html', {"url": url, "photo_name": photo})
+
+def meme_details(request, meme_id):
+    meme = Meme.objects.get(id=meme_id)
+    comments = Comment.objects.filter(meme=meme_id)
+    comment_list = []
+    for comment in comments:
+        opinion = {}
+        opinion['user'] = User.objects.get(id=comment.user.id).username
+        opinion['id']= comment.id
+        opinion['comment']= comment.comment
+        opinion['date'] = comment.date
+        comment_list.append(opinion)
+    return render(request, 'memes/details.html', {'meme': meme, 'comments': comment_list} )
 
 def add_photo(request):
     photo_file = request.FILES.get('photo-file', None) #this saves uploaded photo name
@@ -59,6 +73,19 @@ def add_meme(request, photo):
         print('An error occured uploading meme to S3')
     return redirect('home')
 
+def delete_meme(request, meme_id):
+    Meme.objects.get(id=meme_id).delete()
+    return redirect('home')
+
+def add_comment(request, meme_id):
+    meme = Meme.objects.get(id=meme_id)
+    newComment = Comment.objects.create(comment=request.POST.get('comment'), user=request.user, meme=meme, date=date.now() )
+    newComment.save()
+    return redirect('meme_details', meme_id)
+
+def delete_comment(request, meme_id, comment_id):
+    Comment.objects.get(id=comment_id).delete()
+    return redirect('meme_details', meme_id)
 
 def add_like(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))

@@ -5,6 +5,16 @@
     width: 100%;
     margin-top: 10%;
     background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+
+}
+
+.create-page{
+    height: 100vh;
+    width:100vh;
 }
 
 .draggable{
