@@ -11,7 +11,6 @@ class Meme(models.Model):
     likes = models.IntegerField()
     dislikes = models.IntegerField()
     
-
     def __str__(self):
         return f"Photo for user_id:{self.url} for meme: {self.name}"
 
