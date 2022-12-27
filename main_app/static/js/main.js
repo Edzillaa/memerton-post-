@@ -29,12 +29,12 @@ let uploadMemeData = document.querySelector("#img-data")
 
 buttonDone.addEventListener('click', (event)=>{
     event.preventDefault()
-    html2canvas(document.querySelector(".capture"), { allowTaint: true, useCORS: true}).then(canvas => {
+    html2canvas(document.querySelector("#capture"), {backgroundColor: "rgba(0,0,0,0)", allowTaint: true, useCORS: true}).then(canvas => {
         let img= canvas.toDataURL("img/jpg");
         console.log(img)
-        // let newImg = document.createElement("img")
-        // newImg.src = img
-        // imagePanel.appendChild(newImg)
+        let newImg = document.createElement("img")
+        newImg.src = img
+        imagePanel.appendChild(newImg)
         //pass document 
         //setting up the form for uploading!!
         uploadMemeForm.style.display="block"

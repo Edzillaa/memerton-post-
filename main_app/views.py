@@ -42,7 +42,6 @@ def meme_details(request, meme_id):
         opinion['comment']= comment.comment
         opinion['date'] = comment.date
         comment_list.append(opinion)
-
     return render(request, 'memes/details.html', {'meme': meme, 'comments': comment_list} )
 
 def add_photo(request):
@@ -72,6 +71,10 @@ def add_meme(request, photo):
         meme.save()
     except:
         print('An error occured uploading meme to S3')
+    return redirect('home')
+
+def delete_meme(request, meme_id):
+    Meme.objects.get(id=meme_id).delete()
     return redirect('home')
 
 def add_comment(request, meme_id):
