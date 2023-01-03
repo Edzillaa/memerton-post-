@@ -8,6 +8,7 @@
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- or -->
     <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -15,33 +16,44 @@
     
   </head>
 <body>
-    <header class="navbar-fixed">
-        <nav>
-          <div class="nav-wrapper">
-            <ul>
-              <li><a href="{% url 'home'%}" class="left brand-logo">MEMERTON-POST</a></li>
-            </ul>
-            <ul class="right">
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'sort_my_memes'%}">my memes</a></li>
-                    <li><a href="{% url 'meme_create' ' ' %}">create</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
-                {% else %}
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
-                {% endif %}
-            </ul>
-          </div>
-        </nav>
-      </header>
-
+<header class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper blue-grey darken-1">
+      <ul>
+          <li><a href="{% url 'home'%}" class="left brand-logo"><i class="material-icons">home</i>MEMERTON-POST</a></li>
+        </ul>
+        <ul class="right">
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'sort_my_memes'%}"><i class="material-icons left">view_list</i>My Memes</a></li>
+          <li><a href="{% url 'meme_create' ' ' %}"><i class="material-icons left">create</i>Create</a></li>
+          <li><a href="{% url 'logout' %}"><i class="material-icons left">logout</i>Log Out</a></li>
+        {% else %}
+          <li><a href="{% url 'signup' %}"><i class="material-icons left">account_circle</i>Sign Up</a></li>
+          <li><a href="{% url 'login' %}"><i class="material-icons left">login</i>Log In</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</header>
     <main class="container">
         {% block content %}
         {% endblock %}
     </main>
+    <footer class="page-footer blue-grey darken-1">
+      <div class="center">All Rights Reserved, &copy; 2023 Goblin Mode &nbsp;</div>
+    </footer>
+
 
     <script type="text/javascript" src="{%static 'js/html2canvas.mini.js'%}"></script>
     <script type="text/javascript" src="{%static 'js/main.js'%}"></script>
+
+    <!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+<script>
+   $(".button-collapse").sideNav();
+</script>
     
 </body>
 </html>

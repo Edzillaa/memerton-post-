@@ -17,7 +17,7 @@ import io
 from PIL import Image
 
 S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
-BUCKET = 'catcollector123456789'
+BUCKET = 'eaga-catcollector'
 
 def home(request):
     memes = Meme.objects.all() #pulling all memes from our db
