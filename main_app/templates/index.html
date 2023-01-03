@@ -1,5 +1,14 @@
 {% extends 'base.html' %} {% block content %}
 
+<!-- Dropdown Trigger -->
+<a class="dropdown-trigger btn" href="#" data-target="dropdown1">Sort By</a>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">Most Hated</a></li>
+  <li><a href="#!">Most Liked</a></li>
+  <li><a href="#!">My Memes</a></li>
+</ul>
+
 <div class="row">
   {% for meme in memes%}
   <div class="col s4">
@@ -7,7 +16,7 @@
       <div class="card-content white-text">
         <span class="card-title">{{ meme.name }} </span>
         <a href="{% url 'meme_details' meme.id %}">
-          <img id="{{meme.id}}"class="meme-card" src="{{meme.url}}"/>
+          <img id="{{meme.id}}" class="meme-card" src="{{meme.url}}" />
         </a>
       </div>
       <div class="card-action">
@@ -51,7 +60,6 @@
     <button class="detail-close-btn">close</button>
   </div> -->
   {% endfor %}
-  
 </div>
 
 {% endblock %}
