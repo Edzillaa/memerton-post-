@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import uuid
 import boto3
 from .models import Meme, Comment, User
+from math import sqrt
 # Add the two imports below
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -15,8 +16,8 @@ import base64
 import io
 from PIL import Image
 
-S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
-BUCKET = 'catcollector123456789'
+S3_BASE_URL = 'https://s3.us-west-2.amazonaws.com/'
+BUCKET = 'memertonpost'
 
 def home(request):
     memes = Meme.objects.all() #pulling all memes from our db
@@ -98,6 +99,23 @@ def add_dislike(request):
     meme.dislikes += 1
     meme.save()
     return redirect('home')
+
+def _confidence(likes, dislikes):
+    n = likes + dislikes
+    if n == 0:
+        return 0
+    z = 1.281551565545
+    p = float(dislikes) / n
+    left = p + 1/(2*n)*z*z
+    right = z*sqrt(p*(1-p)/n + z*z/(4*n*n))
+    under = 1+1/n*z*z
+    return (left - right) / under
+
+def confidence(likes, dislikes):
+    if likes + dislikes == 0:
+        return 0
+    else:
+        return _confidence(likes, dislikes)
 
 def sort_my_memes(request):
     my_memes = Meme.objects.filter(user=request.user)
