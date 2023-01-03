@@ -23,7 +23,7 @@
             </ul>
             <ul class="right">
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'home'%}">my memes</a></li>
+                    <li><a href="{% url 'sort_my_memes'%}">my memes</a></li>
                     <li><a href="{% url 'meme_create' ' ' %}">create</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
