@@ -2,10 +2,10 @@
 
 <div class="row">
   {% for meme in memes%}
-  <div class="col s4">
+  <div class="col">
     <div class="card blue-grey darken-1">
       <div class="card-content white-text">
-        <span class="card-title">{{ meme.name }} </span>
+        <span class="card-title">{{ meme.name }}</span>
         <a href="{% url 'meme_details' meme.id %}">
           <img id="{{meme.id}}"class="meme-card" src="{{meme.url}}"/>
         </a>
@@ -20,7 +20,8 @@
             >
               {% csrf_token %}
               <input name="meme-id" value="{{meme.id}}" style="display: none" />
-              <button type="submit">👍🏻</button>
+              <button class="btn-floating waves-light btn-large red" type="submit">
+                <i class="large material-icons">thumb_up</i></a></button>
               :{{meme.likes}}
             </form>
           </div>
@@ -32,7 +33,8 @@
             >
               {% csrf_token %}
               <input name="meme-id" value="{{meme.id}}" style="display: none" />
-              <button type="submit">👎🏻</button>
+              <button class="btn-floating waves-light btn-large red" type="submit">
+                <i class="large material-icons">thumb_down</i></a></button>
               :{{meme.dislikes}}
             </form>
           </div>
@@ -53,5 +55,6 @@
   {% endfor %}
   
 </div>
+
 
 {% endblock %}
