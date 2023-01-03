@@ -16,8 +16,8 @@ import base64
 import io
 from PIL import Image
 
-S3_BASE_URL = 'https://s3.us-west-2.amazonaws.com/'
-BUCKET = 'memertonpost'
+S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
+BUCKET = 'catcollector123456789'
 
 def home(request):
     memes = Meme.objects.all() #pulling all memes from our db
@@ -91,12 +91,14 @@ def delete_comment(request, meme_id, comment_id):
 def add_like(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))
     meme.likes += 1
+    meme.confidence = confidence(meme.likes, meme.dislikes)
     meme.save()
     return redirect('home')
 
 def add_dislike(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))
     meme.dislikes += 1
+    meme.confidence = confidence(meme.likes, meme.dislikes)
     meme.save()
     return redirect('home')
 
@@ -118,14 +120,14 @@ def confidence(likes, dislikes):
         return _confidence(likes, dislikes)
 
 def sort_my_memes(request):
-    my_memes = Meme.objects.filter(user=request.user)
+    my_memes = Meme.objects.filter(user=request.user).order_by('-confidence')
     return render(request, 'index.html', {'memes': my_memes})
 
 def sort_hated(request):
     return redirect('home')
 
 def sort_liked(request):
-    liked_memes = Meme.objects.all().order_by('-confidence')
+    liked_memes = Meme.objects.all().order_by('confidence')
     return render(request, 'index.html', {'memes': liked_memes})
 
 def signup(request):
