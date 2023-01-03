@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import uuid
 import boto3
-from .models import Meme, Comment
+from .models import Meme, Comment, User
+from math import sqrt
 # Add the two imports below
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -10,6 +11,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 # Import the mixin for class-based views
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import datetime as date
 import base64
 import io
 from PIL import Image
@@ -19,7 +21,6 @@ BUCKET = 'memertonpost'
 
 def home(request):
     memes = Meme.objects.all() #pulling all memes from our db
-
     return render(request, 'index.html', {'memes': memes})
 
 def create(request, photo=" "):
@@ -30,6 +31,19 @@ def create(request, photo=" "):
         url = " "
     #passing photo_name to create_page. this will be important when we want to save meme.
     return render(request, 'memes/create.html', {"url": url, "photo_name": photo})
+
+def meme_details(request, meme_id):
+    meme = Meme.objects.get(id=meme_id)
+    comments = Comment.objects.filter(meme=meme_id)
+    comment_list = []
+    for comment in comments:
+        opinion = {}
+        opinion['user'] = User.objects.get(id=comment.user.id).username
+        opinion['id']= comment.id
+        opinion['comment']= comment.comment
+        opinion['date'] = comment.date
+        comment_list.append(opinion)
+    return render(request, 'memes/details.html', {'meme': meme, 'comments': comment_list} )
 
 def add_photo(request):
     photo_file = request.FILES.get('photo-file', None) #this saves uploaded photo name
@@ -60,6 +74,19 @@ def add_meme(request, photo):
         print('An error occured uploading meme to S3')
     return redirect('home')
 
+def delete_meme(request, meme_id):
+    Meme.objects.get(id=meme_id).delete()
+    return redirect('home')
+
+def add_comment(request, meme_id):
+    meme = Meme.objects.get(id=meme_id)
+    newComment = Comment.objects.create(comment=request.POST.get('comment'), user=request.user, meme=meme, date=date.now() )
+    newComment.save()
+    return redirect('meme_details', meme_id)
+
+def delete_comment(request, meme_id, comment_id):
+    Comment.objects.get(id=comment_id).delete()
+    return redirect('meme_details', meme_id)
 
 def add_like(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))
@@ -73,6 +100,23 @@ def add_dislike(request):
     meme.dislikes += 1
     meme.save()
     return redirect('home')
+
+def _confidence(likes, dislikes):
+    n = likes + dislikes
+    if n == 0:
+        return 0
+    z = 1.281551565545
+    p = float(dislikes) / n
+    left = p + 1/(2*n)*z*z
+    right = z*sqrt(p*(1-p)/n + z*z/(4*n*n))
+    under = 1+1/n*z*z
+    return (left - right) / under
+
+def confidence(likes, dislikes):
+    if likes + dislikes == 0:
+        return 0
+    else:
+        return _confidence(likes, dislikes)
 
 def signup(request):
   error_message = ''

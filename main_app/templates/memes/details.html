@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col s8">
+        <h1>DETAIL PAGE FOR MEME: {{ meme.name }}</h1>
+        <img src="{{ meme.url }}">
+        <p>LIKES: 
+            {{ meme.likes }}
+        </p>
+        <p>
+            DISLIKES:
+            {{ meme.dislikes }}
+        </p>
+    </div>
+    <div class="col s4">
+        {% for comment in comments %}
+        <div>
+            <p>{{comment.user}}</p>
+            <p>{{comment.comment}}</p>
+            <p>{{comment.date}}</p>
+            <form action="{% url 'delete_comment' meme.id comment.id %}">
+                <button type="submit">delete comment</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% if user.is_authenticated %}
+        <form action="{% url 'add_comment' meme.id %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="comment">
+            <button type="submit">post</button>
+        </form>
+        {% if user.id == meme.user.id %}
+            <form action="{% url 'delete_meme' meme.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit"> delete meme</button>
+            </form>
+        {% endif %}
+    {% endif %}
+   
+</div>
+{% endblock %}

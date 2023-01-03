@@ -1,39 +1,40 @@
 
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="row">
-    <div id="image-container" class="col s6">
-        {% if url == " "%}
-            <p> Please upload a photo</p>
-        {% else %}
-            <div id="capture">
-                <img class="capture" src="{{url}}" crossorigin="">
-                <div class="draggable">
-                    <input type="text" placeholder="your text">
+<div >
+    <div class="row" >
+        <div id="image-container" class="col s6">
+            {% if url == " "%}
+                <p> Please upload a photo</p>
+            {% else %}
+                <div id="capture" >
+                    <img class="capture" src="{{url}}" crossorigin="" >
+                    <div class="draggable">
+                        <input type="text" placeholder="your text">
+                    </div>
                 </div>
-             </div>
-        {% endif %}
-    </div>
-    <div id="form-container" class="col s6">
-        <form action="{% url 'add_photo' %}" enctype="multipart/form-data" method="POST">
-            {% csrf_token %}
-            <input type="file" name="photo-file">
-            <input type="submit" class="btn" value="Upload Photo">
+            {% endif %}
+        </div>
+        <div id="form-container" class="col s6">
+            <form action="{% url 'add_photo' %}" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <input type="file" name="photo-file">
+                <input type="submit" class="btn" value="Upload Photo">
+                <br><br>
+            </form>
+            <button id="add-text-btn" class="btn">Add Text</button>
             <br><br>
-        </form>
-        <button id="add-text-btn" class="btn">Add Text</button>
-        <br><br>
-        <button id="done-btn" class="btn">Done Editing </button>
+            <button id="done-btn" class="btn">Done Editing </button>
 
-        <form id="upload-meme" action="{% url 'add_meme' photo_name %}" method="POST">
-            {% csrf_token %}
-            <input id="img-data" name="photo-file" style="display:none">
-            <label for="meme-name">MEME NAME:</label>
-            <input name="meme-name" required>
-            <button class="btn" type="submit">ok Upload!</button>
-        </form>
+            <form id="upload-meme" action="{% url 'add_meme' photo_name %}" method="POST">
+                {% csrf_token %}
+                <input id="img-data" name="photo-file" style="display:none">
+                <label for="meme-name">MEME NAME:</label>
+                <input name="meme-name" required>
+                <button class="btn" type="submit">ok Upload!</button>
+            </form>
 
+        </div>
     </div>
 </div>
 

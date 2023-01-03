@@ -6,19 +6,36 @@ let buttonAddText = document.querySelector("#add-text-btn")
 let uploadMemeForm = document.querySelector("#upload-meme")
 let uploadMemeData = document.querySelector("#img-data")
 
+// *********OVERLAY STUFF ************ 
+// let memeDetails = document.querySelectorAll(".meme-details")
+// let memes = document.querySelectorAll(".meme-card")
+// let memeCloseBtn = document.querySelectorAll(".detail-close-btn")
 
+// //show meme details overlay
+// memes.forEach(meme=>{
+//     meme.addEventListener('click', (event)=>{
+//         console.log(event.target.id)
+//         document.querySelector(`div[data-memeid="${event.target.id}"]`).style.display="flex"
+//     })
+// })
+// //close meme detail page
+// memeCloseBtn.forEach(btn=>{
+//     btn.addEventListener('click', (event)=>{
+//         memeDetails.forEach(meme=>{
+//             meme.style.display="none"
+//         })
+//     })
+// })
 
 buttonDone.addEventListener('click', (event)=>{
     event.preventDefault()
-    html2canvas(document.querySelector(".capture"), { allowTaint: true, useCORS: true}).then(canvas => {
+    html2canvas(document.querySelector("#capture"), {backgroundColor: "rgba(0,0,0,0)", allowTaint: true, useCORS: true}).then(canvas => {
         let img= canvas.toDataURL("img/jpg");
         console.log(img)
-        // let newImg = document.createElement("img")
-        // newImg.src = img
-        // imagePanel.appendChild(newImg)
+        let newImg = document.createElement("img")
+        newImg.src = img
+        imagePanel.appendChild(newImg)
         //pass document 
-
-
         //setting up the form for uploading!!
         uploadMemeForm.style.display="block"
         uploadMemeData.value = img
@@ -68,3 +85,11 @@ listeners: {
     },
 }
 })
+
+
+//initialization for materialize dropdown
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, options);
+  });
