@@ -1,12 +1,14 @@
 {% extends 'base.html' %} {% block content %}
 
 <!-- Dropdown Trigger -->
-<a class="dropdown-trigger btn" href="#" data-target="dropdown1">Sort By</a>
+<a class="dropdown-trigger btn" data-target="dropdown1">Sort By</a>
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
   <li><a href="#!">Most Hated</a></li>
   <li><a href="#!">Most Liked</a></li>
-  <li><a href="#!">My Memes</a></li>
+  {% if user.is_authenticated %}
+    <li><a href="{% url 'sort_my_memes' %}">My Memes</a></li>
+  {% endif %}
 </ul>
 
 <div class="row">
@@ -63,3 +65,5 @@
 </div>
 
 {% endblock %}
+
+

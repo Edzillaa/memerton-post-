@@ -93,12 +93,22 @@ def add_like(request):
     meme.save()
     return redirect('home')
 
-
 def add_dislike(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))
     meme.dislikes += 1
     meme.save()
     return redirect('home')
+
+def sort_my_memes(request):
+    my_memes = Meme.objects.filter(user=request.user)
+    return render(request, 'index.html', {'memes': my_memes})
+
+def sort_hated(request):
+    return redirect('home')
+
+def sort_liked(request):
+    liked_memes = Meme.objects.all().order_by('-confidence')
+    return render(request, 'index.html', {'memes': liked_memes})
 
 def signup(request):
   error_message = ''

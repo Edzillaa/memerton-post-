@@ -10,7 +10,7 @@ class Meme(models.Model):
     #if we have time: create new model for likes and dislikes, restricting # of times user can like or dislike a meme.
     likes = models.IntegerField()
     dislikes = models.IntegerField()
-    confidence = models.IntegerField()
+    confidence = models.IntegerField(default=0)
     
     def __str__(self):
         return f"Photo for user_id:{self.url} for meme: {self.name}"
