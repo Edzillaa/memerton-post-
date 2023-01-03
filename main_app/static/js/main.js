@@ -1,10 +1,14 @@
-console.log("hihi")
-let buttonDone = document.querySelector("#done-btn")
-let imagePanel = document.querySelector("#image-container")
-let memeImg = document.querySelector('#capture')
-let buttonAddText = document.querySelector("#add-text-btn")
-let uploadMemeForm = document.querySelector("#upload-meme")
-let uploadMemeData = document.querySelector("#img-data")
+
+const buttonDone = document.querySelector("#done-btn")
+const imagePanel = document.querySelector("#image-container")
+const memeImg = document.querySelector('#capture')
+const buttonAddText = document.querySelector("#add-text-btn")
+const uploadMemeForm = document.querySelector("#upload-meme")
+const uploadMemeData = document.querySelector("#img-data")
+const sortByMenu = document.querySelector('.dropdown-trigger');
+   
+//Initialization for materialize items
+M.Dropdown.init(sortByMenu);
 
 // *********OVERLAY STUFF ************ 
 // let memeDetails = document.querySelectorAll(".meme-details")
@@ -85,3 +89,4 @@ listeners: {
     },
 }
 })
+

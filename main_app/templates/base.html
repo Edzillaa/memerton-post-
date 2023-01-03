@@ -24,7 +24,7 @@
         </ul>
         <ul class="right">
         {% if user.is_authenticated %}
-          <li><a href="{% url 'home'%}"><i class="material-icons left">view_list</i>My Memes</a></li>
+          <li><a href="{% url 'sort_my_memes'%}"><i class="material-icons left">view_list</i>My Memes</a></li>
           <li><a href="{% url 'meme_create' ' ' %}"><i class="material-icons left">create</i>Create</a></li>
           <li><a href="{% url 'logout' %}"><i class="material-icons left">logout</i>Log Out</a></li>
         {% else %}

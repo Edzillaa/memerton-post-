@@ -1,13 +1,25 @@
 {% extends 'base.html' %} {% block content %}
 
+<!-- Dropdown Trigger -->
+<a class="dropdown-trigger btn" data-target="dropdown1">Sort By</a>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="{% url 'sort_hated' %}">Most Hated</a></li>
+  <li><a href="{% url 'sort_liked' %}">Most Liked</a></li>
+  {% if user.is_authenticated %}
+    <li><a href="{% url 'sort_my_memes' %}">My Memes</a></li>
+  {% endif %}
+</ul>
+
 <div class="row">
+  {% if memes %}
   {% for meme in memes%}
   <div class="col">
     <div class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title">{{ meme.name }}</span>
         <a href="{% url 'meme_details' meme.id %}">
-          <img id="{{meme.id}}"class="meme-card" src="{{meme.url}}"/>
+          <img id="{{meme.id}}" class="meme-card" src="{{meme.url}}" />
         </a>
       </div>
       <div class="card-action">
@@ -53,8 +65,13 @@
     <button class="detail-close-btn">close</button>
   </div> -->
   {% endfor %}
-  
+  {% else %}
+  <p> No memes :(</p>
+  {% endif %}
+
 </div>
 
 
 {% endblock %}
+
+

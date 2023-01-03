@@ -10,12 +10,13 @@ class Meme(models.Model):
     #if we have time: create new model for likes and dislikes, restricting # of times user can like or dislike a meme.
     likes = models.IntegerField()
     dislikes = models.IntegerField()
+    confidence = models.FloatField(default=0.0)
     
     def __str__(self):
         return f"Photo for user_id:{self.url} for meme: {self.name}"
 
     class Meta:
-        ordering = ['-dislikes']
+        ordering = ['-confidence']
     
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

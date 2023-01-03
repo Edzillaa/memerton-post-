@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import uuid
 import boto3
 from .models import Meme, Comment, User
+from math import sqrt
 # Add the two imports below
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -90,15 +91,44 @@ def delete_comment(request, meme_id, comment_id):
 def add_like(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))
     meme.likes += 1
+    meme.confidence = confidence(meme.likes, meme.dislikes)
     meme.save()
     return redirect('home')
-
 
 def add_dislike(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))
     meme.dislikes += 1
+    meme.confidence = confidence(meme.likes, meme.dislikes)
     meme.save()
     return redirect('home')
+
+def _confidence(likes, dislikes):
+    n = likes + dislikes
+    if n == 0:
+        return 0
+    z = 1.281551565545
+    p = float(dislikes) / n
+    left = p + 1/(2*n)*z*z
+    right = z*sqrt(p*(1-p)/n + z*z/(4*n*n))
+    under = 1+1/n*z*z
+    return (left - right) / under
+
+def confidence(likes, dislikes):
+    if likes + dislikes == 0:
+        return 0
+    else:
+        return _confidence(likes, dislikes)
+
+def sort_my_memes(request):
+    my_memes = Meme.objects.filter(user=request.user).order_by('-confidence')
+    return render(request, 'index.html', {'memes': my_memes})
+
+def sort_hated(request):
+    return redirect('home')
+
+def sort_liked(request):
+    liked_memes = Meme.objects.all().order_by('confidence')
+    return render(request, 'index.html', {'memes': liked_memes})
 
 def signup(request):
   error_message = ''
