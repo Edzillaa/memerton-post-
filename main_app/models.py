@@ -25,7 +25,7 @@ class Comment(models.Model):
     comment = models.TextField(max_length=250)
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['date']
 
 #if we have time: Message model for live chat.
 
