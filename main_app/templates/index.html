@@ -9,26 +9,26 @@
       <li><a href="{% url 'sort_liked' %}" class="btn-floating green btn-large">
           <i class="large material-icons">thumb_up</i></a></li>
       {% if user.is_authenticated %}
-      <li><a href="{% url 'sort_my_memes' %}" class="btn-floating grey btn-large">
+      <li><a href="{% url 'sort_my_memes' %}" class="btn-floating grey lighten-1 btn-large">
           <i class="large material-icons">view_list</i></a></li>
       {% endif %}
   </ul>
 </div>
 
-<div class="row">
+<div class="grid">
   {% if memes %}
   {% for meme in memes%}
-  <div class="col">
+  <div class="grid-item">
     <div class="card">
-      <div class="card-content white-text">
+      <div class="center-align card-content white-text">
         <span class="card-title">{{ meme.name }}</span>
         <a href="{% url 'meme_details' meme.id %}">
-          <img id="{{meme.id}}" class="meme-card" src="{{meme.url}}" />
+          <img id="{{meme.id}}" class="grid-item--width2 meme-card" src="{{meme.url}}" />
         </a>
       </div>
       <div class="card-action">
         <div id="likes-section">
-          <div class="vote-box">
+          <div class="center-align vote-box">
             <form
               action="{% url 'add_like' %}"
               enctype="multipart/form-data"
@@ -41,7 +41,7 @@
               :{{meme.likes}}
             </form>
           </div>
-          <div class="vote-box">
+          <div class="center-align vote-box">
             <form
               action="{% url 'add_dislike' %}"
               enctype="multipart/form-data"

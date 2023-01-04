@@ -22,6 +22,14 @@ body {
     background-color: #4FBDBA;
 }
 
+/* Masonry grid-items */
+.grid-item { 
+    width: 380px; 
+}
+.grid-item--width2 { 
+    width: 300px; 
+}
+
 #capture{
     background-repeat: no-repeat;
     background-size: contain;
@@ -86,6 +94,9 @@ body {
     padding: 0px;
     background-color: #35858B;
     color: white;
+    position: fixed;
+    bottom: 0;
+
 }
 
 /* Removes white border around urls */
