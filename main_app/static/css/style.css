@@ -9,7 +9,6 @@ body {
 
 .nav-wrapper {
     background-color: #35858B;
-
 }
 
 /* Meme card background */
@@ -24,10 +23,21 @@ body {
 
 /* Masonry grid-items */
 .grid-item { 
-    width: 380px; 
+    width: 380px;
+
 }
 .grid-item--width2 { 
-    width: 300px; 
+    width: 380px;
+
+}
+
+.card .card-content {
+    padding: 0px;
+    margin: 0px;
+}
+
+.card {
+    padding-top: 0px;
 }
 
 #capture{
@@ -35,12 +45,10 @@ body {
     background-size: contain;
     height:100%;
     width: 100%;
-    margin-top: 10%;
     background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10%;
 
 }
 
@@ -91,11 +99,12 @@ body {
 }
 
 .page-footer {
-    padding: 0px;
-    background-color: #35858B;
+    padding: 10px;
+    background-color: #ffffff00;
     color: white;
     position: fixed;
     bottom: 0;
+    width: 100%;
 
 }
 
@@ -106,8 +115,14 @@ body {
 
 #picborder {
     padding: 0px;
+    margin: 0px;
 }
 
+#commentscroll {
+    height: 500px;
+    overflow-y: scroll;
+}
 
-
-
+#comment-form {
+    display: flex;
+}
