@@ -21,12 +21,14 @@
   <div class="grid-item">
     <div class="card">
       <div class="center-align card-content white-text">
-        <span class="card-title">{{ meme.name }}</span>
+        
         <a href="{% url 'meme_details' meme.id %}">
           <img id="{{meme.id}}" class="grid-item--width2 meme-card" src="{{meme.url}}" />
         </a>
+        
       </div>
       <div class="card-action">
+        <span class="card-title center">{{ meme.name }}</span>
         <div id="likes-section">
           <div class="center-align vote-box">
             <form
