@@ -5,6 +5,7 @@ const memeImg = document.querySelector('#capture')
 const buttonAddText = document.querySelector("#add-text-btn")
 const uploadMemeForm = document.querySelector("#upload-meme")
 const uploadMemeData = document.querySelector("#img-data")
+const elem = document.querySelector('.grid')
    
 //Initialization for materialize items
 
@@ -87,4 +88,17 @@ listeners: {
     },
 }
 })
+
+// Masonry JS
+var msnry = new Masonry( elem, {
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});
+
+// element argument can be a selector string
+//   for an individual element
+var msnry = new Masonry( '.grid', {
+  // options
+});
 
