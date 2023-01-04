@@ -16,8 +16,8 @@ import base64
 import io
 from PIL import Image
 
-S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
-BUCKET = 'eaga-catcollector'
+S3_BASE_URL = 'https://s3.us-west-2.amazonaws.com/'
+BUCKET = 'memertonpost'
 
 def home(request):
     memes = Meme.objects.all() #pulling all memes from our db
@@ -48,12 +48,12 @@ def meme_details(request, meme_id):
 def add_photo(request):
     photo_file = request.FILES.get('photo-file', None) #this saves uploaded photo name
     if photo_file:
-        s3 = boto3 .client('s3')
+        s3 = boto3.client('s3')
         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-        try:
-            s3.upload_fileobj(photo_file, BUCKET, key)
-        except:
-            print('An error occured uploading file to S3')
+        # try:
+        s3.upload_fileobj(photo_file, BUCKET, key)
+        # except:
+        #     print('An error occured uploading file to S3')
     return redirect('meme_create', key)
 
 def add_meme(request, photo):

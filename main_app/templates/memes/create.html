@@ -1,16 +1,14 @@
-
 {% extends 'base.html' %}
 {% block content %}
 
-
-<div >
+<div>
     <div class="row" >
         <div id="image-container" class="col s6">
             {% if url == " "%}
                 <p> Please upload a photo</p>
             {% else %}
                 <div id="capture" >
-                    <img class="capture" src="{{url}}" crossorigin="" >
+                    <img id="picborder" class="responsive-img card-panel capture" src="{{url}}" crossorigin="" >
                     <div class="draggable">
                         <input type="text" placeholder="your text">
                     </div>
@@ -33,7 +31,7 @@
                 <input id="img-data" name="photo-file" style="display:none">
                 <label for="meme-name">MEME NAME:</label>
                 <input name="meme-name" required>
-                <button class="btn" type="submit">ok Upload!</button>
+                <button onclick="Materialize.toast('Post Saved', 4000, 'rounded')" class="btn" type="submit">ok Upload!</button>
             </form>
 
         </div>

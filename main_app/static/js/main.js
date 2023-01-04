@@ -5,10 +5,8 @@ const memeImg = document.querySelector('#capture')
 const buttonAddText = document.querySelector("#add-text-btn")
 const uploadMemeForm = document.querySelector("#upload-meme")
 const uploadMemeData = document.querySelector("#img-data")
-const sortByMenu = document.querySelector('.dropdown-trigger');
    
 //Initialization for materialize items
-M.Dropdown.init(sortByMenu);
 
 // *********OVERLAY STUFF ************ 
 // let memeDetails = document.querySelectorAll(".meme-details")
