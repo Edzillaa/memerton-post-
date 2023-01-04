@@ -12,6 +12,7 @@ buttonDone.addEventListener('click', (event)=>{
     event.preventDefault()
     html2canvas(document.querySelector("#capture"), {backgroundColor: "rgba(0,0,0,0)", allowTaint: true, useCORS: true}).then(canvas => {
         let img= canvas.toDataURL("img/jpg");
+        imagePanel.appendChild()
         uploadMemeForm.style.display="block"
         uploadMemeData.value = img
         buttonDone.style.display="none"      

@@ -3,8 +3,7 @@ body {
     /* display: flex; */
     /* height: 100vh;
     width: 100vw; */
-    background-color: #072227;
-    
+    background-color: #072227;    
 }
 
 .nav-wrapper {
@@ -52,21 +51,7 @@ body {
     height: 50px;
     width: 20%;
 }
-/* .meme-text input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
 
-.meme-text input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
-    background-color: transparent;
-    border-bottom: none;
-    font-size: 1.5rem;
-    font-family: 'Tourney', cursive;
-    color: #AEFEFF;
-    font-weight: 700;
-    margin: 0;
-}  */
 .meme-text{
     background-color: transparent !important;
     border-bottom: none !important;
@@ -81,7 +66,9 @@ body {
     box-shadow: none !important;
 } 
 
-
+input{
+    color: #AEFEFF !important;
+}
 
 .draggable:hover{
     cursor: cell;
