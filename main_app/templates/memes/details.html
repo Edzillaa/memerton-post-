@@ -3,8 +3,10 @@
 
 
 <div class="row">
-    <div class="col s8">
-        <h1>DETAIL PAGE FOR MEME: {{ meme.name }}</h1>
+    <div class="center-align col s12">
+        <h1>Caption: {{ meme.name }}</h1>
+    </div>
+    <div class="col s6">
         <img src="{{ meme.url }}">
         <p>LIKES: 
             {{ meme.likes }}
@@ -13,20 +15,38 @@
             DISLIKES:
             {{ meme.dislikes }}
         </p>
+        {% if user.id == meme.user.id %}
+        <form action="{% url 'delete_meme' meme.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn-large red center-align"type="submit"><i class="large material-icons">delete</i></button>
+        </form>
+        {% endif %}
     </div>
-    <div class="col s4">
-        {% for comment in comments %}
-        <div>
-            <p>{{comment.user}}</p>
-            <p>{{comment.comment}}</p>
-            <p>{{comment.date}}</p>
-            <form action="{% url 'delete_comment' meme.id comment.id %}">
-                <button type="submit">delete comment</button>
-            </form>
+
+    <div class="col s5">
+        {% if user.is_authenticated %}
+        <form id="comment-form"action="{% url 'add_comment' meme.id %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="comment" placeholder="Add a comment...">
+            <button class="btn btn-medium" type="submit"><i class="large material-icons">mode_comment</i></button>
+        </form>
+        {% endif %}
+
+        <div id="commentscroll">
+            {% for comment in comments %}
+            <div>
+                <p>{{comment.user}}</p>
+                <p>{{comment.comment}}</p>
+                <p>{{comment.date}}</p>
+                <form class="right-align" action="{% url 'delete_comment' meme.id comment.id %}">
+                    <button class="btn-floating btn-small red" type="submit"><i class="small material-icons">delete</i></button>
+                </form>
+            <hr>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-    {% if user.is_authenticated %}
+    <!-- {% if user.is_authenticated %}
         <form action="{% url 'add_comment' meme.id %}" method="POST">
             {% csrf_token %}
             <input type="text" name="comment">
@@ -38,7 +58,7 @@
                 <button type="submit"> delete meme</button>
             </form>
         {% endif %}
-    {% endif %}
+    {% endif %} -->
    
 </div>
 {% endblock %}

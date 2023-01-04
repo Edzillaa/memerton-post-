@@ -21,6 +21,25 @@ body {
     background-color: #4FBDBA;
 }
 
+/* Masonry grid-items */
+.grid-item { 
+    width: 380px;
+
+}
+.grid-item--width2 { 
+    width: 380px;
+
+}
+
+.card .card-content {
+    padding: 0px;
+    margin: 0px;
+}
+
+.card {
+    padding-top: 0px;
+}
+
 #capture{
     background-repeat: no-repeat;
     background-size: contain;
@@ -30,6 +49,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .create-page{
@@ -117,14 +137,29 @@ body {
 
 .page-footer {
     padding: 10px;
-    background-color: #072227;
+    background-color: #ffffff00;
     color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
+
+}
+
+/* Removes white border around urls */
+.card-panel {
+    padding: 0px;
 }
 
 #picborder {
     padding: 0px;
+    margin: 0px;
 }
 
+#commentscroll {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+#comment-form {
+    display: flex;
+}
