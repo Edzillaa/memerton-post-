@@ -83,8 +83,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'memertonpost',
-        'USER': 'postgres',
-        'PASSWORD': 'tissue123'
     }
 }
 
