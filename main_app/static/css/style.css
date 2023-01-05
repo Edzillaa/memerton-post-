@@ -23,12 +23,15 @@ body {
 
 /* Masonry grid-items */
 .grid-item { 
+    float: left;
     width: 380px;
+    height: 50%;
+    margin: 6px;
 
 }
 .grid-item--width2 { 
     width: 380px;
-
+    
 }
 
 .card .card-content {
