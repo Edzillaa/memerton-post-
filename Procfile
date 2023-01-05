@@ -1,1 +1,1 @@
-web: gunicorn memerton_post.wsgi.application
+web: gunicorn memerton_post.wsgi
