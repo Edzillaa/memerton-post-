@@ -24,9 +24,9 @@
           <img id="{{meme.id}}" class="grid-item--width2 meme-image" src="{{meme.url}}" />
         </a>
       <div class="card-action">
-      <div class="center-align card-content white-text">
+      <div class="card-content white-text center-align">
         <span class="card-title">{{ meme.name }}</span>
-        <p>author: <strong>{{meme.user}}</strong></p>
+        <p>by <strong>{{meme.user}}</strong></p>
       </div>
         <div id="likes-section">
           <div class="center-align vote-box">
@@ -37,8 +37,8 @@
             >
               {% csrf_token %}
               <input name="meme-id" value="{{meme.id}}" style="display: none" />
-              <button class="btn-floating waves-light btn-large green lighten-1" type="submit">
-                <i class="large material-icons">thumb_up</i></a></button>
+              <button class="btn waves-light btn-small green lighten-1" type="submit">
+                <i class="small material-icons">thumb_up</i></a></button>
               :{{meme.likes}}
             </form>
           </div>
@@ -50,8 +50,8 @@
             >
               {% csrf_token %}
               <input name="meme-id" value="{{meme.id}}" style="display: none" />
-              <button class="btn-floating waves-light btn-large red lighten-1" type="submit">
-                <i class="large material-icons">thumb_down</i></a></button>
+              <button class="btn waves-light btn-small red lighten-1" type="submit">
+                <i class="small material-icons">thumb_down</i></a></button>
               :{{meme.dislikes}}
             </form>
           </div>
