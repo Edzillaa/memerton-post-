@@ -34,7 +34,7 @@ def create(request, photo=" "):
 
 def meme_details(request, meme_id):
     meme = Meme.objects.get(id=meme_id)
-    comments = Comment.objects.filter(meme=meme_id)
+    comments = Comment.objects.filter(meme=meme_id).order_by('date')
     comment_list = []
     for comment in comments:
         opinion = {}

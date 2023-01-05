@@ -124,7 +124,24 @@ input{
 .img{
     width:100%;
 }
+.meme-detail-container{
+    margin: 0 auto;
+    padding: 0 5%;
+    max-width: 1280px;
+}
+.meme-details-meta-data{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
 
+}
+
+.likes-dislikes{
+    width: 90%;
+}
+.detail-meme-img{
+    max-width: 100%;
+}
 .meme-details{
     display: none;
     position:absolute;
@@ -259,35 +276,3 @@ input::file-selector-button:hover {
     width: 400px;
 }
 
-
-@media (max-aspect-ratio: 1/1) {
-  .meme-item {
-    height: 30vh;
-  }
-}
-
-
-
-@media (max-height: 480px) {
-  .meme-item {
-    height: 80vh;
-  }
-}
-
-
-
-@media (max-aspect-ratio: 1/1) and (max-width: 480px) {
-  .index-grid {
-    flex-direction: row;
-  }
-
-  .meme-item {
-    height: auto;
-    width: 100%;
-  }
-  .meme-image {
-    width: 100%;
-    max-height: 75vh;
-    min-width: 0;
-  }
-} 
