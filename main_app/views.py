@@ -16,8 +16,8 @@ import base64
 import io
 from PIL import Image
 
-S3_BASE_URL = 'https://s3.ca-central-1.amazonaws.com/'
-BUCKET = 'eaga-catcollector'
+S3_BASE_URL = 'https://s3.us-west-2.amazonaws.com/'
+BUCKET = 'memertonpost'
 
 def home(request):
     memes = Meme.objects.all() #pulling all memes from our db
