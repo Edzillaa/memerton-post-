@@ -23,6 +23,7 @@ body {
 
 /* Masonry grid-items */
 .grid-item { 
+    float: left;
     width: 380px;
 }
 .grid-item--width2 { 
