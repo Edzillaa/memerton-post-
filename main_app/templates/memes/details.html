@@ -34,24 +34,26 @@
         <form id="comment-form"action="{% url 'add_comment' meme.id %}" method="POST">
             {% csrf_token %}
             <input type="text" name="comment" placeholder="Add a comment..." required>
-            <button class="btn btn-medium" type="submit"><i class="large material-icons">mode_comment</i></button>
+            <button class="btn btn-small" type="submit">Post</button>
         </form>
         {% endif %}
 
         <div id="commentscroll">
             {% if comments %}
                 {% for comment in comments %}
-                <div>
-                    <p>{{comment.user}} - {{comment.date}} </p>
+                <div class="comment-container">
+                    <div class="comment-meta-data">
+                        <p>{{comment.user}} - {{comment.date}} </p>
+                        {% if user.is_authenticated and user.username == comment.user  %}
+                            <form class="right-align" action="{% url 'delete_comment' meme.id comment.id %}">
+                                <button class="btn-floating btn-small red extra-small" type="submit">x</button>
+                            </form>
+                         {% endif %}
+                    </div>
+    
+                    
                     <p>{{comment.comment}}</p>
              
-                    {% if user.is_authenticated and user.username == comment.user  %}
-                        <form class="right-align" action="{% url 'delete_comment' meme.id comment.id %}">
-                            <button class="btn-floating btn-small red" type="submit"><i class="small material-icons">delete</i></button>
-                        </form>
-                    {% endif %}
-
-                    <hr>
                 </div>
                 {% endfor %}
             {% else %}

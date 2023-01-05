@@ -23,7 +23,6 @@ class Comment(models.Model):
     meme = models.ForeignKey(Meme, on_delete=models.CASCADE)
     date = models.DateField('comment date')
     comment = models.TextField(max_length=250)
-    time = models.DateTimeField(default=datetime.now)
 
     class Meta:
         ordering = ['date']

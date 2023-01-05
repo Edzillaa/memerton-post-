@@ -11,6 +11,28 @@ body {
     background-color: #072227;
     
 }
+
+::-webkit-scrollbar {
+    width: 6px;
+
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #35858B;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #0e454e;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0d3e47;
+
+  }
+
 #GM-logo{
     width: 50px;
     height: 50px;
@@ -111,16 +133,36 @@ input{
 #upload-meme{
     display: none;
 }
-#likes-section{
+.meme-data-section{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-self: center;
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 3px;
+    padding: 5px;
+    color: black;
+}
+.meme-likes-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+    
 }
 
 .vote-box{
-    width:50%
+    width:100%
 }
+.meme-title{
+    font-size: 20px;
+    margin:0 0 0 10px;
+}
+.meme-author{
+    font-size: 12px;
 
+}
 .img{
     width:100%;
 }
@@ -245,20 +287,45 @@ input::file-selector-button:hover {
     font-weight: bold !important;
     font-size: 1.5rem !important;
 }
+.extra-small{
+    transform: scale(0.7);
 
 
+}
+.comment-container{
+    width: 99%;
+    overflow-wrap: break-word;
+    background-color:  rgba(79,189,186,0.2);
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 1% 1% 1% 0%;
+}
+
+.comment-container p{
+    margin:0px 0px 10px 0px;
+}
+.comment-meta-data{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-meta-data p{
+    margin:10px 0 5px 0;
+    font-weight: bold;
+}
 /* index page styling */
 
 .index-grid {
   display: flex;
   flex-wrap: wrap;
-  margin: 2vmin;
+  margin: 1vmin;
 }
 
 .meme-item{
-  height: 40vh;
+  height: 100%;
   flex-grow: 1;
-  margin: 2vmin;
+  margin: 1vmin;
 }
 
 .meme-item:last-child {
