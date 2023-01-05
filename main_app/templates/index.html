@@ -15,13 +15,13 @@
   </ul>
 </div>
 
-<div class="grid">
+<ul class="index-grid">
   {% if memes %}
   {% for meme in memes%}
-  <div class="grid-item">
-    <div class="card">
-        <a href="{% url 'meme_details' meme.id %}">
-          <img id="{{meme.id}}" class="grid-item--width2 meme-image" src="{{meme.url}}" />
+    <li class="meme-item">
+      <div class="card meme-image">
+        <a href="{% url 'meme_details' meme.id %}" >
+          <img id="{{meme.id}}" class="the-meme" src="{{meme.url}}" />
         </a>
       <div class="card-action">
       <div class="card-content white-text center-align">
@@ -57,8 +57,9 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+      </li>
+      
+
   <!-- ******** overlay stuff ********* -->
   <!-- <div data-memeid="{{meme.id}}" class="meme-details row">
     <div class="meme-detail-info">
@@ -73,8 +74,9 @@
   {% else %}
   <p> No memes :(</p>
   {% endif %}
+  <li class="meme-item"></li>
 
-</div>
+</ul>
 
 
 {% endblock %}
