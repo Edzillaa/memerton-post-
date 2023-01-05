@@ -8,29 +8,31 @@ const uploadMemeData = document.querySelector("#img-data")
 const elem = document.querySelector('.grid')
 const allMemeText =Array.from(document.querySelectorAll('.draggable'))
 const allMemeTextBox = Array.from(document.querySelectorAll('.meme-text'))
-
+const colorArray = ['red','orange','yellow','green','blue','indigo','violet','white']
+let count = 0;
 buttonDone.addEventListener('click', (event)=>{
     event.preventDefault()
-
+    textColors = []
+    allMemeTextBox.forEach(text =>{
+        textColors.push(text.style.color)
+    })
+    console.log(textColors)
     html2canvas(document.querySelector("#capture"), {
         scale: 1.1 ,
         backgroundColor: "rgba(0,0,0,0)", 
-        allowTaint: true, 
         useCORS: true, 
-        letterRendering:true,
-        onclone: (el)=>{
+        onclone: function(el){
             const textboxes = el.querySelectorAll('.meme-text')
-            const imageCoords= memeImg.getBoundingClientRect();
-            textboxes.forEach(text=>{
+            textboxes.forEach((text, idx)=>{
                 const textCoords = text.getBoundingClientRect();
                 let oldCen  = textCoords.left + textCoords.width/2 //distance btn left edge of photo and text center
                 text.style.cssText=`font-size:16px!important; transform:scale(2.5); position: absolute; left:0px; width: ${textCoords.width}px !important; `
                 const newCoords = text.getBoundingClientRect();
                 let newCen= oldCen - newCoords.left-(textCoords.width/2)//distance clone textbox needs to move left
-                text.style.cssText=`font-size:16px!important; transform:scale(2.5); position: absolute;left:${newCen}px; width: ${textCoords.width}px !important;`
+                text.style.cssText=`font-size:16px!important; transform:scale(2.5); position: absolute;left:${newCen}px; width: ${textCoords.width}px !important; color: ${textColors[idx]}!important;`
             })
         }
-    }).then(canvas => {
+    }).then(function(canvas){
         let img= canvas.toDataURL("img/jpg");
         // console.log(img)
         // let newImg = document.createElement("img")
@@ -71,14 +73,38 @@ buttonAddText.addEventListener('click',(event)=>{
     })
     allMemeTextBox.forEach(textbox=>{
         textbox.addEventListener('input', resizeInput); 
+        textbox.addEventListener('keydown', changeColors)
     })
 } )
-//resizing input on meme text.
+
+
 allMemeTextBox.forEach(textbox=>{
     textbox.addEventListener('input', resizeInput); 
+    textbox.addEventListener('keydown', changeColors)
 })
+
+function changeColors(event){
+    if (event.key === 'ArrowUp'){
+        if (count >= colorArray.length-1){
+            count = 0
+        } else {
+            count++
+        }
+
+    } else if (event.key === 'ArrowDown'){
+        if (count < 0){
+            count = colorArray.length-1
+        } else {
+            count--
+            
+        }
+    }
+    console.log(count)
+    event.target.style.cssText=`color:${colorArray[count]}!important;width:${this.value.length}ch !important`
+
+}
 function resizeInput() {
-  this.style.cssText = `width:${this.value.length}ch !important`;
+    this.style.cssText = `width:${this.value.length}ch !important`;
 }
 
 interact('.draggable').draggable({
