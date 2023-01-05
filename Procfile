@@ -1,0 +1,1 @@
+web: gunicorn memerton_post.wsgi
