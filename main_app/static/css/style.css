@@ -1,14 +1,54 @@
+body {
+    color: white;
+    /* display: flex; */
+    /* height: 100vh;
+    width: 100vw; */
+    background-color: #072227;
+    
+}
+
+.nav-wrapper {
+    background-color: #35858B;
+}
+
+/* Meme card background */
+.card {
+    background-color: #35858B;
+}
+
+/* right side sort/button */
+.btn-floating {
+    background-color: #4FBDBA;
+}
+
+/* Masonry grid-items */
+.grid-item { 
+    width: 380px;
+
+}
+.grid-item--width2 { 
+    width: 380px;
+
+}
+
+.card .card-content {
+    padding: 0px;
+    margin: 0px;
+}
+
+.card {
+    padding-top: 0px;
+}
+
 #capture{
     background-repeat: no-repeat;
     background-size: contain;
     height:100%;
     width: 100%;
-    margin-top: 10%;
     background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10%;
 
 }
 
@@ -17,13 +57,51 @@
     width:100vh;
 }
 
+.image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#create-container{
+    margin-top: 5%;
+}
 .draggable{
     position: absolute;
     top: 100px;
-    background-color: rgba(255,255,255,0.5);
-    height: 50;
-    width: 100px;
+    background-color: transparent;
+    height: 50px;
+    width: 20%;
 }
+/* .meme-text input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.meme-text input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+    background-color: transparent;
+    border-bottom: none;
+    font-size: 1.5rem;
+    font-family: 'Tourney', cursive;
+    color: #AEFEFF;
+    font-weight: 700;
+    margin: 0;
+}  */
+.meme-text{
+    background-color: transparent !important;
+    border-bottom: none !important;
+    font-size: 3.5rem !important;
+    font-family: 'Arial' !important;
+    color: white !important;
+    text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
+               1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+} 
+
+
 
 .draggable:hover{
     cursor: cell;
@@ -41,6 +119,7 @@
 .vote-box{
     width:50%
 }
+
 .img{
     width:100%;
 }
@@ -53,11 +132,34 @@
     height: 75vh;
     width: 100vh;
     background-color: rgba(255,255,255,0.4);
-    
-    
 
 }
 
 .page-footer {
+    padding: 10px;
+    background-color: #ffffff00;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+}
+
+/* Removes white border around urls */
+.card-panel {
     padding: 0px;
+}
+
+#picborder {
+    padding: 0px;
+    margin: 0px;
+}
+
+#commentscroll {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+#comment-form {
+    display: flex;
 }

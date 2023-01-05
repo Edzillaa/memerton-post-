@@ -6,19 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- or -->
-    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tourney:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   </head>
 <body>
 <header class="navbar-fixed">
   <nav>
-    <div class="nav-wrapper blue-grey darken-1">
+    <div class="nav-wrapper">
       <ul>
           <li><a href="{% url 'home'%}" class="left brand-logo"><i class="material-icons">home</i>MEMERTON-POST</a></li>
         </ul>
@@ -39,21 +37,21 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="page-footer blue-grey darken-1">
+    <footer class="page-footer">
       <div class="center">All Rights Reserved, &copy; 2023 Goblin Mode &nbsp;</div>
     </footer>
-
-
+    <!-- masonary-->
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+    <!-- materialize-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <!-- interactjs -->
+    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <!-- javascript files -->
     <script type="text/javascript" src="{%static 'js/html2canvas.mini.js'%}"></script>
     <script type="text/javascript" src="{%static 'js/main.js'%}"></script>
 
-    <!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-
-<script>
-   $(".button-collapse").sideNav();
-</script>
-    
 </body>
 </html>
