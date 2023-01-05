@@ -7,27 +7,48 @@ const uploadMemeForm = document.querySelector("#upload-meme")
 const uploadMemeData = document.querySelector("#img-data")
 const elem = document.querySelector('.grid')
 const allMemeText =Array.from(document.querySelectorAll('.draggable'))
+const allMemeTextBox = Array.from(document.querySelectorAll('.meme-text'))
 
 buttonDone.addEventListener('click', (event)=>{
     event.preventDefault()
-    html2canvas(document.querySelector("#capture"), {backgroundColor: "rgba(0,0,0,0)", allowTaint: true, useCORS: true}).then(canvas => {
+
+    html2canvas(document.querySelector("#capture"), {
+        scale: 1.1 ,
+        backgroundColor: "rgba(0,0,0,0)", 
+        allowTaint: true, 
+        useCORS: true, 
+        letterRendering:true,
+        onclone: (el)=>{
+            const textboxes = el.querySelectorAll('.meme-text')
+            const imageCoords= memeImg.getBoundingClientRect();
+            textboxes.forEach(text=>{
+                const textCoords = text.getBoundingClientRect();
+                let oldCen  = textCoords.left + textCoords.width/2 //distance btn left edge of photo and text center
+                text.style.cssText=`font-size:16px!important; transform:scale(2.5); position: absolute; left:0px; width: ${textCoords.width}px !important; `
+                const newCoords = text.getBoundingClientRect();
+                let newCen= oldCen - newCoords.left-(textCoords.width/2)//distance clone textbox needs to move left
+                text.style.cssText=`font-size:16px!important; transform:scale(2.5); position: absolute;left:${newCen}px; width: ${textCoords.width}px !important;`
+            })
+        }
+    }).then(canvas => {
         let img= canvas.toDataURL("img/jpg");
-        console.log(img)
-        let newImg = document.createElement("img")
-        newImg.src = img
-        imagePanel.appendChild(newImg)
+        // console.log(img)
+        // let newImg = document.createElement("img")
+        // newImg.src = img
+        // imagePanel.appendChild(newImg)
         uploadMemeForm.style.display="block"
         uploadMemeData.value = img
         buttonDone.style.display="none"      
         buttonAddText.style.display="none"  
         uploadPhotoForm.style.display="none"
-    });
+        
+    })
 })
-
+ 
 //double clicking text will delete text
 allMemeText.forEach(text=>{
     text.addEventListener('dblclick', (event)=>{
-        event.target.style.display="none"
+        event.target.remove()
     })
 })
 
@@ -41,28 +62,45 @@ buttonAddText.addEventListener('click',(event)=>{
     newTextContainer.classList.add("draggable")
     memeImg.appendChild(newTextContainer)
     allMemeText.push(newTextContainer)
+    allMemeTextBox.push(newTextBox)
+    console.log(allMemeText)
     allMemeText.forEach(text=>{
         text.addEventListener('dblclick', (event)=>{
-            event.target.style.display="none"
+            event.target.remove()
         })
     })
+    allMemeTextBox.forEach(textbox=>{
+        textbox.addEventListener('input', resizeInput); 
+    })
 } )
-
-const position = { x: 0, y: 0 }
-interact('.draggable').draggable({
-listeners: {
-    start (event) {
-    console.log(event.type, event.target)
-    },
-    move (event) {
-        let {x,y} = event.target.dataset
-        x = (+x || 0) + event.dx;
-        y = (+y || 0) + event.dy;
-        event.target.style.transform = `translate(${x}px, ${y}px)`;
-        Object.assign(event.target.dataset, { x, y });
-    },
-}
+//resizing input on meme text.
+allMemeTextBox.forEach(textbox=>{
+    textbox.addEventListener('input', resizeInput); 
 })
+function resizeInput() {
+  this.style.cssText = `width:${this.value.length}ch !important`;
+}
+
+interact('.draggable').draggable({
+    listeners: {
+              // call this function on every dragmove event
+      move: dragMoveListener,
+    }
+})
+
+function dragMoveListener (event) {
+    var target = event.target
+    // keep the dragged position in the data-x/data-y attributes
+    var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+    var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+  
+    // translate the element
+    target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+  
+    // update the position attributes
+    target.setAttribute('data-x', x)
+    target.setAttribute('data-y', y)
+}
 
 //MasonryJS jquery stuff
 $('.grid').masonry({

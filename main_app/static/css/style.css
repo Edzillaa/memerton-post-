@@ -3,7 +3,8 @@ body {
     /* display: flex; */
     /* height: 100vh;
     width: 100vw; */
-    background-color: #072227;    
+    background-color: #072227;
+    
 }
 
 .nav-wrapper {
@@ -48,7 +49,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    line-height: 0!important;
 }
 
 .create-page{
@@ -60,30 +61,31 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 #create-container{
     margin-top: 5%;
 }
 .draggable{
     position: absolute;
-    top: 100px;
     background-color: transparent;
-    height: 50px;
-    width: 20%;
+    width: auto;
 }
 
 .meme-text{
     background-color: transparent !important;
     border-bottom: none !important;
-    font-size: 3.5rem !important;
-    font-family: 'Arial' !important;
+    font-size:40px !important;
     color: white !important;
-    text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
-               1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
-    font-weight: 700 !important;
+    text-shadow: #000 3px 2px 3px  !important;
+    width: 100px!important;
+    height: auto !important;
     margin: 0 !important;
+    font-weight: 700 !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
+    box-sizing: border-box !important;
+    vertical-align: middle !important;
 } 
 
 input{
@@ -149,4 +151,62 @@ input{
 
 #comment-form {
     display: flex;
+}
+
+#no-upload-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10%;
+    transition: 0.3s ease-in-out;
+}
+
+#no-upload-msg:hover{
+    color: #FDA856;
+    transition: 0.3s ease-in-out;
+    cursor: cell;
+}
+
+#create-instructions{
+    font-size: 0.9rem;
+    border-radius: 5px;
+    padding: 0.5% 5% 2% 0%;
+    margin-bottom: 8%;
+    text-transform: uppercase;
+    transition:0.3s ease; 
+
+}
+#create-instructions>ol{
+    padding-inline-start: 20px;
+}
+
+#create-instructions:hover{
+    cursor: cell;  
+    background-color: transparent;
+    transition:0.3s ease;
+}
+
+input::file-selector-button {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    color: #fff;
+    background-color: #FDA856;
+    transition: 0.3s;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+}
+
+
+input::file-selector-button:hover {
+    background:#35858B;
+    transition: 0.3s;
+    cursor: pointer;
+    color:white;
 }
