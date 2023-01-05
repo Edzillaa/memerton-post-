@@ -4,8 +4,11 @@
 <div>
     <div id="create-container"class="row" >
         <div id="image-container" class="col s8">
+            
             {% if url == " "%}
-                <p> UPLOAD TO START</p>
+            <div id="no-upload-msg" class=" pulse" >
+                <h4> <strong>UPLOAD AN IMAGE TO START</strong></h4>
+            </div>
             {% else %}
                 <div id="capture" >
                     <img id="picborder" class="responsive-img card-panel capture" src="{{url}}" crossorigin="" >
@@ -16,17 +19,21 @@
             {% endif %}
         </div>
         <div id="form-container" class="col s4">
-            
+            <div id="create-instructions" >
+                <h4>instructions</h4>
+                <ol>
+                    <li>Select text to edit</li>
+                    <li>Click and drag text to move</li>
+                    <li>Double click text to delete</li>
+                </ol>
+            </div>
+
             <form id="upload-photo-form" action="{% url 'add_photo' %}" enctype="multipart/form-data" method="POST">
                 {% csrf_token %}
-                <p> Instructions:</p>
-                <ul>
-                    <li>1. Upload a Photo</li>
-                    <li>2. Click and drag text to move it</li>
-                    <li>3. Click on text to edit it</li>
-                    <li>4. Double click text to delete</li>
-                </ul>
+         
                 <input type="file" name="photo-file" required>
+         
+          
                 <br><br>
                 <input id="upload-photo-btn" type="submit" class="btn" value="Upload Photo">
                 <br><br>

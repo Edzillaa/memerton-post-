@@ -49,7 +49,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    line-height: 0!important;
 }
 
 .create-page{
@@ -61,47 +61,36 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 #create-container{
     margin-top: 5%;
 }
 .draggable{
     position: absolute;
-    top: 100px;
     background-color: transparent;
-    height: 50px;
-    width: 20%;
-}
-/* .meme-text input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+    width: auto;
 }
 
-.meme-text input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
-    background-color: transparent;
-    border-bottom: none;
-    font-size: 1.5rem;
-    font-family: 'Tourney', cursive;
-    color: #AEFEFF;
-    font-weight: 700;
-    margin: 0;
-}  */
 .meme-text{
     background-color: transparent !important;
     border-bottom: none !important;
-    font-size: 3.5rem !important;
-    font-family: 'Arial' !important;
+    font-size:40px !important;
     color: white !important;
-    text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
-               1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
-    font-weight: 700 !important;
+    text-shadow: #000 3px 2px 3px  !important;
+    width: 100px!important;
+    height: auto !important;
     margin: 0 !important;
+    font-weight: 700 !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
+    box-sizing: border-box !important;
+    vertical-align: middle !important;
 } 
 
-
+input{
+    color: #AEFEFF !important;
+}
 
 .draggable:hover{
     cursor: cell;
@@ -162,4 +151,62 @@ body {
 
 #comment-form {
     display: flex;
+}
+
+#no-upload-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10%;
+    transition: 0.3s ease-in-out;
+}
+
+#no-upload-msg:hover{
+    color: #FDA856;
+    transition: 0.3s ease-in-out;
+    cursor: cell;
+}
+
+#create-instructions{
+    font-size: 0.9rem;
+    border-radius: 5px;
+    padding: 0.5% 5% 2% 0%;
+    margin-bottom: 8%;
+    text-transform: uppercase;
+    transition:0.3s ease; 
+
+}
+#create-instructions>ol{
+    padding-inline-start: 20px;
+}
+
+#create-instructions:hover{
+    cursor: cell;  
+    background-color: transparent;
+    transition:0.3s ease;
+}
+
+input::file-selector-button {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    color: #fff;
+    background-color: #FDA856;
+    transition: 0.3s;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+}
+
+
+input::file-selector-button:hover {
+    background:#35858B;
+    transition: 0.3s;
+    cursor: pointer;
+    color:white;
 }
