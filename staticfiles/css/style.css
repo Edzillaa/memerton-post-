@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'OldLondon';
     src: local('OldLondon'),
-         url('staticfiles/fonts/OldLondon.ttf') format("truetype");
+         url('../fonts/OldLondon.ttf') format("truetype");
 }
 body {
     color: white;
