@@ -210,3 +210,8 @@ input::file-selector-button:hover {
     cursor: pointer;
     color:white;
 }
+
+
+.meme-image{
+    width:100%;
+}

@@ -8,7 +8,8 @@ const uploadMemeData = document.querySelector("#img-data")
 const elem = document.querySelector('.grid')
 const allMemeText =Array.from(document.querySelectorAll('.draggable'))
 const allMemeTextBox = Array.from(document.querySelectorAll('.meme-text'))
-
+const colorArray = ['red','orange','yellow','green','blue','indigo','violet','white']
+let count = 0;
 buttonDone.addEventListener('click', (event)=>{
     event.preventDefault()
 
@@ -73,12 +74,35 @@ buttonAddText.addEventListener('click',(event)=>{
         textbox.addEventListener('input', resizeInput); 
     })
 } )
-//resizing input on meme text.
+
+
 allMemeTextBox.forEach(textbox=>{
     textbox.addEventListener('input', resizeInput); 
+    textbox.addEventListener('keydown', changeColors)
 })
+
+function changeColors(event){
+    if (event.key === 'ArrowUp'){
+        if (count >= colorArray.length-1){
+            count = 0
+        } else {
+            count++
+        }
+
+    } else if (event.key === 'ArrowDown'){
+        if (count < 0){
+            count = colorArray.length-1
+        } else {
+            count--
+            
+        }
+    }
+    console.log(count)
+    event.target.style.cssText=`color:${colorArray[count]}!important;width:${this.value.length}ch !important`
+
+}
 function resizeInput() {
-  this.style.cssText = `width:${this.value.length}ch !important`;
+    this.style.cssText = `width:${this.value.length}ch !important`;
 }
 
 interact('.draggable').draggable({
