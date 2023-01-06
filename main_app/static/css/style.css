@@ -9,7 +9,6 @@ body {
     /* height: 100vh;
     width: 100vw; */
     background-color: #072227;
-    
 }
 
 ::-webkit-scrollbar {
@@ -44,6 +43,7 @@ body {
     color: black;
     font-family: 'OldLondon';
     font-weight: bold;
+    font-size: 3rem;
 }
 .nav-wrapper {
     background-color: #35858B;
@@ -98,9 +98,11 @@ body {
     align-items: center;
     flex-direction: column;
 }
+
 #create-container{
     margin-top: 5%;
 }
+
 .draggable{
     position: absolute;
     background-color: transparent;
@@ -135,32 +137,34 @@ input{
 }
 .meme-data-section{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-self: center;
-    background-color: white;
-    border-radius: 3px;
+    background-color: #35666a;
+    border-end-start-radius: 3px;
+    border-end-end-radius: 3px;
     border: 1px solid black;
     padding: 10px;
-    color: black;
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
-
+    color: white;
 }
+
+
+
 .meme-likes-section{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 25%;
+    width: 100%
     
 }
 
 .vote-box{
-    width:100%
+    width: 20%;
 }
 .meme-title{
-    font-size: 20px;
-    margin:0 0 0 10px;
+    font-size: 16px;
+    margin:0 0 10px 10px;
 }
 .meme-author{
     font-size: 12px;
@@ -302,6 +306,14 @@ input::file-selector-button:hover {
     border-radius: 3px;
     padding: 5px 10px;
     margin: 1% 1% 1% 0%;
+    transition: 0.3s ease;
+
+}
+
+.comment-container:hover{
+    background-color:  rgba(79,189,186,0.4);
+    transition: 0.3s ease;
+
 }
 
 .comment-container p{
@@ -322,27 +334,47 @@ input::file-selector-button:hover {
 .index-grid {
   display: flex;
   flex-wrap: wrap;
-  margin: 1vmin;
+  margin: 2%;
 }
 
 .meme-item{
-  height: 100%;
-  flex-grow: 1;
-  margin: 1vmin;
+  height: 300px;
+  width: 300px;
+  flex-grow:1;
+  margin: 10px 10px 100px 10px;
+  opacity: 0.7;
+  transition: 0.3s;
+  
 }
+
+.meme-item:hover{
+    opacity: 1;
+    transition: 0.3s;
+}
+
 
 .meme-item:last-child {
   flex-grow: 10;
 }
 
+.likes-dislikes-arrow:hover{
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.likes-dislike-btn{
+    border:none;
+    background-color:#35666a;
+    padding:0px;
+}
+
 .meme-image {
-  max-height: 100%;
-  width: 400px;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
   vertical-align: bottom;
-  border-radius: 1vmin;
 }
-.the-meme{
-    width: 400px;
-}
+
+
+
 
