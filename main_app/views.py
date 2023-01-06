@@ -14,7 +14,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime as date
 import base64
 import io
-from PIL import Image
 
 S3_BASE_URL = 'https://s3.us-west-2.amazonaws.com/'
 BUCKET = 'memertonpost'
@@ -23,6 +22,7 @@ def home(request):
     memes = Meme.objects.all() #pulling all memes from our db
     return render(request, 'index.html', {'memes': memes})
 
+@login_required
 def create(request, photo=" "):
     #passing photo name via route:
     if photo != " ":
@@ -34,7 +34,7 @@ def create(request, photo=" "):
 
 def meme_details(request, meme_id):
     meme = Meme.objects.get(id=meme_id)
-    comments = Comment.objects.filter(meme=meme_id)
+    comments = Comment.objects.filter(meme=meme_id).order_by('-id')
     comment_list = []
     for comment in comments:
         opinion = {}
@@ -45,6 +45,7 @@ def meme_details(request, meme_id):
         comment_list.append(opinion)
     return render(request, 'memes/details.html', {'meme': meme, 'comments': comment_list} )
 
+@login_required
 def add_photo(request):
     photo_file = request.FILES.get('photo-file', None) #this saves uploaded photo name
     if photo_file:
@@ -56,6 +57,7 @@ def add_photo(request):
         #     print('An error occured uploading file to S3')
     return redirect('meme_create', key)
 
+@login_required
 def add_meme(request, photo):
     key = photo
     raw_data= request.POST.get('photo-file')[request.POST.get('photo-file').find(',')+1:]
@@ -74,20 +76,24 @@ def add_meme(request, photo):
         print('An error occured uploading meme to S3')
     return redirect('home')
 
+@login_required
 def delete_meme(request, meme_id):
     Meme.objects.get(id=meme_id).delete()
     return redirect('home')
 
+@login_required
 def add_comment(request, meme_id):
     meme = Meme.objects.get(id=meme_id)
     newComment = Comment.objects.create(comment=request.POST.get('comment'), user=request.user, meme=meme, date=date.now() )
     newComment.save()
     return redirect('meme_details', meme_id)
 
+@login_required
 def delete_comment(request, meme_id, comment_id):
     Comment.objects.get(id=comment_id).delete()
     return redirect('meme_details', meme_id)
 
+@login_required
 def add_like(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))
     meme.likes += 1
@@ -95,6 +101,7 @@ def add_like(request):
     meme.save()
     return redirect('home')
 
+@login_required
 def add_dislike(request):
     meme = Meme.objects.get(id=request.POST.get('meme-id'))
     meme.dislikes += 1

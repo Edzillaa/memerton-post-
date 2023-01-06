@@ -19,43 +19,46 @@
   {% if memes %}
   {% for meme in memes%}
     <li class="meme-item">
-      <div class="card meme-image">
-        <a href="{% url 'meme_details' meme.id %}" >
-          <img id="{{meme.id}}" class="the-meme" src="{{meme.url}}" />
-        </a>
-      <div class="card-action">
-      <div class="card-content white-text center-align">
-        <span class="card-title">{{ meme.name }}</span>
-        <p>by <strong>{{meme.user}}</strong></p>
-      </div>
-        <div id="likes-section">
-          <div class="center-align vote-box">
-            <form
-              action="{% url 'add_like' %}"
-              enctype="multipart/form-data"
-              method="POST"
-            >
-              {% csrf_token %}
-              <input name="meme-id" value="{{meme.id}}" style="display: none" />
-              <button class="btn waves-light btn-small green lighten-1" type="submit">
-                <i class="small material-icons">thumb_up</i></a></button>
-              :{{meme.likes}}
-            </form>
-          </div>
-          <div class="center-align vote-box">
-            <form
-              action="{% url 'add_dislike' %}"
-              enctype="multipart/form-data"
-              method="POST"
-            >
-              {% csrf_token %}
-              <input name="meme-id" value="{{meme.id}}" style="display: none" />
-              <button class="btn waves-light btn-small red lighten-1" type="submit">
-                <i class="small material-icons">thumb_down</i></a></button>
-              :{{meme.dislikes}}
-            </form>
+      <a href="{% url 'meme_details' meme.id %}">
+        <img id="{{meme.id}}" class="meme-image"src="{{meme.url}}" />
+      </a>
+   
+        <div class="meme-data-section">
+          <p class="meme-title">{{ meme.name }} <span class="meme-author">by {{meme.user}}</span></p>
+          <div class="meme-likes-section">
+       
+            <div class="vote-box">
+              <form
+                action="{% url 'add_like' %}"
+                enctype="multipart/form-data"
+                method="POST"
+              >
+                {% csrf_token %}
+                <input name="meme-id" value="{{meme.id}}" style="display: none" />
+                <button type="submit"  class="likes-dislike-btn"><i class= "material-icons small grey-text likes-dislikes-arrow">arrow_drop_up </i>
+                  {{meme.likes}}</button>
+              </form>
+            </div>
+  
+            <div class="center-align vote-box">
+              <form
+                action="{% url 'add_dislike' %}"
+                enctype="multipart/form-data"
+                method="POST"
+              >
+                {% csrf_token %}
+                <input name="meme-id" value="{{meme.id}}" style="display: none" />
+                <button  class="likes-dislike-btn" type="submit"><i class="material-icons small grey-text likes-dislikes-arrow">arrow_drop_down </i>
+                  {{meme.dislikes}} </button>
+              </form>
+            </div>
           </div>
         </div>
+     
+      <div class=" white-text center-align">
+        
+      </div>
+       
       </div>
       </li>
       
