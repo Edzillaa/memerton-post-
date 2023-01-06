@@ -1,62 +1,71 @@
-{% extends 'base.html' %}
-{% block content %}
-
-<h1>{{ meme.name }}</h1>
-<div class="row">
-
-    <div class="col s6">
-        <img src="{{ meme.url }}">
-        <p>LIKES: 
-            {{ meme.likes }}
-        </p>
-        <p>
-            DISLIKES:
-            {{ meme.dislikes }}
-        </p>
+{% extends 'base.html' %} {% block content %}
+<div class="meme-detail-container">
+  <h1>{{ meme.name }}</h1>
+  <p>by {{meme.user}}</p>
+  <div class="row">
+    <div class="col s8">
+      <div class="meme-details-meta-data"></div>
+      <img class="detail-meme-img" src="{{ meme.url }}" />
+      <div class="meme-details-meta-data">
         {% if user.id == meme.user.id %}
         <form action="{% url 'delete_meme' meme.id %}" method="POST">
-            {% csrf_token %}
-            <button class="btn-large red center-align"type="submit"><i class="large material-icons">delete</i></button>
+          {% csrf_token %}
+          <button class="btn-small red center-align" type="submit">
+            <i class="large material-icons">delete</i>
+          </button>
         </form>
         {% endif %}
-    </div>
-
-    <div class="col s6">
-        {% if user.is_authenticated %}
-        <form id="comment-form"action="{% url 'add_comment' meme.id %}" method="POST">
-            {% csrf_token %}
-            <input type="text" name="comment" placeholder="Add a comment..." required>
-            <button class="btn btn-medium" type="submit"><i class="large material-icons">mode_comment</i></button>
-        </form>
-        {% endif %}
-
-        <div id="commentscroll">
-            {% for comment in comments %}
-            <div>
-                <p>{{comment.user}}</p>
-                <p>{{comment.comment}}</p>
-                <p>{{comment.date}}</p>
-                <form class="right-align" action="{% url 'delete_comment' meme.id comment.id %}">
-                    <button class="btn-floating btn-small red" type="submit"><i class="small material-icons">delete</i></button>
-                </form>
-            <hr>
-            </div>
-            {% endfor %}
+        <div class="meme-details-meta-data likes-dislikes">
+          <p>LIKES: {{ meme.likes }}</p>
+          <p>DISLIKES: {{ meme.dislikes }}</p>
         </div>
+      </div>
     </div>
-    <!-- {% if user.is_authenticated %}
-        <form action="{% url 'add_comment' meme.id %}" method="POST">
-            {% csrf_token %}
-            <input type="text" name="comment">
-            <button type="submit">post</button>
-        </form>
-        {% if user.id == meme.user.id %}
-            <form action="{% url 'delete_meme' meme.id %}" method="POST">
-                {% csrf_token %}
-                <button type="submit"> delete meme</button>
+    <div class="col s4">
+      {% if user.is_authenticated %}
+      <form
+        id="comment-form"
+        action="{% url 'add_comment' meme.id %}"
+        method="POST"
+      >
+        {% csrf_token %}
+        <input
+          type="text"
+          name="comment"
+          placeholder="Add a comment..."
+          required
+        />
+        <button class="btn btn-small" type="submit">Post</button>
+      </form>
+      {% endif %}
+      <div id="commentscroll">
+        {% if comments %} {% for comment in comments %}
+        <div class="comment-container">
+          <div class="comment-meta-data">
+            <p>{{comment.user}} - {{comment.date}}</p>
+            {% if user.is_authenticated and user.username == comment.user %}
+            <form
+              class="right-align"
+              action="{% url 'delete_comment' meme.id comment.id %}"
+            >
+              <button
+                class="btn-floating btn-small red extra-small"
+                type="submit"
+              >
+                x
+              </button>
             </form>
+            {% endif %}
+          </div>
+          <p>{{comment.comment}}</p>
+        </div>
+        {% endfor %} {% else %}
+        <div>
+          <p>No Comments</p>
+        </div>
         {% endif %}
-    {% endif %} -->
-   
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
