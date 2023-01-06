@@ -3,64 +3,77 @@
     src: local('OldLondon'),
          url('../fonts/OldLondon.ttf') format("truetype");
 }
+
+html{
+    background: linear-gradient(235deg,#e66465, #9198e5);
+    background-size: 400% 400%;
+    animation: gradient 7s ease infinite;
+}
+
+@keyframes gradient {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
 body {
     color: white;
-    /* display: flex; */
-    /* height: 100vh;
-    width: 100vw; */
-    background-color: #072227;
 }
 
 ::-webkit-scrollbar {
     width: 6px;
-
-  }
+}
   
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #35858B;
-  }
+::-webkit-scrollbar-track {
+    background: #9198e5;
+}
   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #0e454e;
-  }
+::-webkit-scrollbar-thumb {
+    background: #e66465;
+}
   
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #0d3e47;
-
-  }
+::-webkit-scrollbar-thumb:hover {
+    background: #e66465;
+}
 
 #GM-logo{
     width: 50px;
     height: 50px;
+    margin: 0 20px;
 }
-#logo-box{
+
+nav .brand-logo{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
-    font-family: 'OldLondon';
     font-weight: bold;
     font-size: 3rem;
-}
-.nav-wrapper {
-    background-color: #35858B;
-    padding-left: 2% !important;
+    color: black;
+    font-family: 'OldLondon';
 }
 
-/* Meme card background */
+nav{
+    box-shadow:none;
+    background-color: rgba(230, 100,101, 0.2);
+}
+
+.nav-wrapper {
+    padding-left: 2% !important;
+    color: white !important;
+    font-size: 20px;
+}
+
+nav ul a {
+    color: white;
+}
+
 .card {
     background-color: #072227;
 }
 
-/* right side sort/button */
 .btn-floating {
     background-color: #4FBDBA;
 }
-
-
 
 /* meme index cards */
 .card-action{
@@ -101,6 +114,7 @@ body {
 
 #create-container{
     margin-top: 5%;
+    height: 100vh;
 }
 
 .draggable{
@@ -124,8 +138,14 @@ body {
     vertical-align: middle !important;
 } 
 
+label{
+    color: white!important;
+}
+
 input{
-    color: #AEFEFF !important;
+    color: white !important;
+    border-bottom: 1px solid orange!important;
+    box-shadow: none!important;
 }
 
 .draggable:hover{
@@ -135,20 +155,19 @@ input{
 #upload-meme{
     display: none;
 }
+
 .meme-data-section{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-self: center;
-    background-color: #35666a;
+    background-color: rgba(0,0,0,0.3);
     border-end-start-radius: 3px;
     border-end-end-radius: 3px;
-    border: 1px solid black;
     padding: 10px;
     color: white;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
 }
-
-
 
 .meme-likes-section{
     display: flex;
@@ -156,41 +175,46 @@ input{
     justify-content: space-between;
     align-items: center;
     width: 100%
-    
 }
 
 .vote-box{
     width: 20%;
 }
+
 .meme-title{
     font-size: 16px;
     margin:0 0 10px 10px;
 }
+
 .meme-author{
     font-size: 12px;
-
 }
+
 .img{
     width:100%;
 }
+
 .meme-detail-container{
     margin: 0 auto;
     padding: 0 5%;
     max-width: 1280px;
 }
+
 .meme-details-meta-data{
     display:flex;
     justify-content: space-around;
     align-items: center;
-
 }
 
 .likes-dislikes{
     width: 90%;
 }
+
 .detail-meme-img{
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
 }
+
 .meme-details{
     display: none;
     position:absolute;
@@ -198,21 +222,19 @@ input{
     align-items: center;
     height: 75vh;
     width: 100vh;
-    background-color: rgba(255,255,255,0.4);
-
+    background-color: rgba(0,0,0,0.4);
+    border:0;
 }
 
 .page-footer {
     padding: 10px;
-    background-color: #ffffff00;
+    background-color: rgba(230, 100,101, 0.2);
     color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
-
 }
 
-/* Removes white border around urls */
 .card-panel {
     padding: 0px;
 }
@@ -224,7 +246,7 @@ input{
 
 #commentscroll {
     height: 500px;
-    overflow-y: scroll;
+    overflow-y: scroll
 }
 
 #comment-form {
@@ -255,6 +277,7 @@ input{
     transition:0.3s ease; 
 
 }
+
 #create-instructions>ol{
     padding-inline-start: 20px;
 }
@@ -276,14 +299,13 @@ input::file-selector-button {
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
     color: #fff;
-    background-color: #FDA856;
+    background-color: #e66465!important;
     transition: 0.3s;
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%)!important;
 }
 
-
 input::file-selector-button:hover {
-    background:#35858B;
+    background:orange!important;
     transition: 0.3s;
     cursor: pointer;
     color:white;
@@ -294,11 +316,20 @@ input::file-selector-button:hover {
     font-weight: bold !important;
     font-size: 1.5rem !important;
 }
+
 .extra-small{
     transform: scale(0.7);
 
-
 }
+
+#form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 400px;
+}
+
 .comment-container{
     width: 99%;
     overflow-wrap: break-word;
@@ -307,18 +338,17 @@ input::file-selector-button:hover {
     padding: 5px 10px;
     margin: 1% 1% 1% 0%;
     transition: 0.3s ease;
-
 }
 
 .comment-container:hover{
     background-color:  rgba(79,189,186,0.4);
     transition: 0.3s ease;
-
 }
 
 .comment-container p{
     margin:0px 0px 10px 0px;
 }
+
 .comment-meta-data{
     display:flex;
     justify-content: space-between;
@@ -329,7 +359,6 @@ input::file-selector-button:hover {
     margin:10px 0 5px 0;
     font-weight: bold;
 }
-/* index page styling */
 
 .index-grid {
   display: flex;
@@ -338,13 +367,12 @@ input::file-selector-button:hover {
 }
 
 .meme-item{
-  height: 300px;
+  height: 400px;
   width: 300px;
   flex-grow:1;
-  margin: 10px 10px 100px 10px;
+  margin: 10px 20px 120px 20px;
   opacity: 0.7;
   transition: 0.3s;
-  
 }
 
 .meme-item:hover{
@@ -352,19 +380,25 @@ input::file-selector-button:hover {
     transition: 0.3s;
 }
 
-
 .meme-item:last-child {
   flex-grow: 10;
 }
 
 .likes-dislikes-arrow:hover{
     cursor: pointer;
+    color: orange !important;
     transition: 0.3s ease-in-out;
 }
 
 .likes-dislike-btn{
     border:none;
-    background-color:#35666a;
+    background-color:rgba(0,0,0,0);
+    padding:0px;
+}
+
+.likes-dislike-btn:focus{
+    border:none;
+    background-color:rgba(0,0,0,0);
     padding:0px;
 }
 
@@ -375,6 +409,41 @@ input::file-selector-button:hover {
   vertical-align: bottom;
 }
 
+.side-nav-bar-small{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
 
+#slide-out li{
+    background-color:rgba(255,255,255,0.4)!important;
+}
 
+#slide-out ul{
+   height: 100%;
+}
 
+nav .hide-on-med-and-up{
+   padding: 0 10px;
+}
+
+.btn, .btn-large, .btn-small {
+    text-decoration: none;
+    color: #fff!important;
+    background-color: rgba(246, 183, 10, 0.856)!important;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
+}
+
+.btn:hover , .btn-large:hover , .btn-small:hover {
+    background-color: #e66465!important;
+    cursor: pointer;
+}
+
+.red {
+    background-color: #e66465 !important;
+}

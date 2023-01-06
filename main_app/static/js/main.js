@@ -10,6 +10,7 @@ const allMemeText =Array.from(document.querySelectorAll('.draggable'))
 const allMemeTextBox = Array.from(document.querySelectorAll('.meme-text'))
 const colorArray = ['red','orange','yellow','green','blue','indigo','violet','white']
 let count = 0;
+
 buttonDone.addEventListener('click', (event)=>{
     event.preventDefault()
     textColors = []
@@ -34,10 +35,6 @@ buttonDone.addEventListener('click', (event)=>{
         }
     }).then(function(canvas){
         let img= canvas.toDataURL("img/jpg");
-        // console.log(img)
-        // let newImg = document.createElement("img")
-        // newImg.src = img
-        // imagePanel.appendChild(newImg)
         uploadMemeForm.style.display="block"
         uploadMemeData.value = img
         buttonDone.style.display="none"      
@@ -77,7 +74,6 @@ buttonAddText.addEventListener('click',(event)=>{
     })
 } )
 
-
 allMemeTextBox.forEach(textbox=>{
     textbox.addEventListener('input', resizeInput); 
     textbox.addEventListener('keydown', changeColors)
@@ -90,19 +86,17 @@ function changeColors(event){
         } else {
             count++
         }
-
     } else if (event.key === 'ArrowDown'){
         if (count < 0){
             count = colorArray.length-1
         } else {
             count--
-            
         }
     }
     console.log(count)
     event.target.style.cssText=`color:${colorArray[count]}!important;width:${this.value.length}ch !important`
-
 }
+
 function resizeInput() {
     this.style.cssText = `width:${this.value.length}ch !important`;
 }
@@ -118,23 +112,10 @@ function dragMoveListener (event) {
     var target = event.target
     // keep the dragged position in the data-x/data-y attributes
     var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-    var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
-  
+    var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy  
     // translate the element
     target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
-  
     // update the position attributes
     target.setAttribute('data-x', x)
     target.setAttribute('data-y', y)
 }
-
-//MasonryJS jquery stuff
-$('.grid').masonry({
-    // options
-    itemSelector: '.grid-item',
-    columnWidth: 200
-});
-
-// materialize jquery stuff
-$(".button-collapse").sideNav();
-
