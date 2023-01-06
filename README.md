@@ -8,7 +8,7 @@ Honestly, you're the funniest person like, ever. You should *definitely* make in
 <hr>
 
 ## This is how to make memes:
-1) Start app and log in, we want your deets dude.
+1) Start app and log in or sign up, we want your deets dude.
 2) Find an image you like (try not to steal it, it's tacky).
 3) Go to our dope *create* page and upload your new fave image.
 4) I feel like I don't *need* to say this but, add text to your photo. Make it funny or "The Prez" is gonna delete your ass.
