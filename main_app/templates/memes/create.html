@@ -1,5 +1,4 @@
 {% extends 'base.html' %} {% block content %}
-
 <div>
   <div id="create-container" class="row">
     <div id="image-container" class="col s6">
@@ -62,15 +61,55 @@
           {% csrf_token %}
           <input id="img-data" name="photo-file" style="display: none" />
           <label for="meme-name">MEME TITLE:</label>
-          <input name="meme-name" required />
-          <button
-            onclick="Materialize.toast('Post Saved', 4000, 'rounded')"
+          <input name="meme-name" autocomplete="off" required />
+          <button id="submit-meme-btn"
             class="btn"
             type="submit"
           >
             DONE
           </button>
-        </form>
+      </div>
+    </div>
+
+    <div class="preloader-wrapper large active">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
       </div>
     </div>
   </div>
