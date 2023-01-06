@@ -9,7 +9,13 @@ const elem = document.querySelector('.grid')
 const allMemeText =Array.from(document.querySelectorAll('.draggable'))
 const allMemeTextBox = Array.from(document.querySelectorAll('.meme-text'))
 const colorArray = ['red','orange','yellow','green','blue','indigo','violet','white']
+const submitMemeBtn = document.querySelector('#submit-meme-btn')
+const progressCircle = document.querySelector('.preloader-wrapper')
 let count = 0;
+console.log(progressCircle.style)
+submitMemeBtn.addEventListener('click', (event)=>{
+    progressCircle.style.cssText="display:block; position: absolute; top:40%; left: 50%;";
+})
 
 buttonDone.addEventListener('click', (event)=>{
     event.preventDefault()
